@@ -28,4 +28,6 @@ void GameManager::startGame()
                               player->getPlayerRaceName(), player->getPlayerClassName(),
                               player->getPlayerStep(), player->getPlayerCurrentHealth()) ;
 
+    gui->updateInventorySizeStatus(player->getInventoryStatus());
+
 }

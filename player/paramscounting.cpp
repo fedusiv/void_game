@@ -11,3 +11,8 @@ int ParamsCounting::healthCount(int current, int vitality)
     int step_value = 5;
     return current + step_value * (vitality - 1);
 }
+
+int ParamsCounting::inventorySizeCount( int level)
+{
+    return 10 + level*2;
+}

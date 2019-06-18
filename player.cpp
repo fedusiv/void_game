@@ -5,6 +5,10 @@ Player::Player() : _Step(0)
     Stats = new PlayerStats();
     Race = new PlayerRace();
     Class = new PlayerClass();
+    Inventory = new PlayerInventory();
+
+    // set inventory size
+    Inventory->recalculateInventorySize(Stats->getLevel());
 }
 
 int ** Player::getPlayerStats()
@@ -35,4 +39,9 @@ QString Player::getPlayerClassName()
 int Player::getPlayerStep()
 {
     return _Step;
+}
+
+inventoryStatus *Player::getInventoryStatus()
+{
+ return Inventory->getInventoryStatus();
 }

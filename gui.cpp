@@ -25,6 +25,11 @@ void Gui::updateFullPlayerInfo(int **stats, int level, QString raceName, QString
     healthBar->setValue(health);
 }
 
+void Gui::updateInventorySizeStatus(inventoryStatus * status)
+{
+    label_inventory->setText( QString::number( *(status->size) ) + " / " + QString::number( *(status->max) ));
+}
+
 void Gui::startGame()
 {
     enterUiHide();
@@ -57,6 +62,7 @@ void Gui::gameUiSetup()
     this->setFixedSize(800,500);
 
     gameUiSetup_if();
+    gameUiSetup_inv();
 
     this->show();
 }
@@ -70,6 +76,19 @@ void Gui::connectInit()
 void Gui::button_StartClicked()
 {
     emit startSignal();
+}
+
+
+void Gui::gameUiSetup_inv()
+{
+    label_inventory = new QLabel(this);
+    label_inventory->setGeometry(60,250,40,20);
+
+    label_inventory_c = new QLabel("Size", this);
+    label_inventory_c->setGeometry(20,250,40,20);
+
+    inventoryBrowser = new QTextBrowser(this);
+    inventoryBrowser->setGeometry(20,270,100,180);
 }
 
 

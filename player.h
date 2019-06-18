@@ -4,6 +4,8 @@
 #include "player/playerstats.h"
 #include "player/playerrace.h"
 #include "player/playerclass.h"
+#include "player/playerinventory.h"
+
 #include <QDebug>
 
 
@@ -19,6 +21,7 @@ public:
     QString getPlayerRaceName();
     QString getPlayerClassName();
     int getPlayerStep();
+    inventoryStatus * getInventoryStatus();
 
 private:
     // private classes for main params of player
@@ -26,6 +29,8 @@ private:
     PlayerRace * Race;
     PlayerClass * Class;
 
+    // player inventory class
+    PlayerInventory * Inventory;
     // counter of step how far away player from start
     int _Step;
 };

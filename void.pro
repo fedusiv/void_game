@@ -28,7 +28,7 @@ SOURCES += \
         gamemanager.cpp \
         gui.cpp \
         main.cpp \
-        paramscounting.cpp \
+        player/paramscounting.cpp \
         player.cpp \
         player/playerinventory.cpp \
         player/playerclass.cpp \
@@ -39,7 +39,7 @@ SOURCES += \
 HEADERS += \
     gamemanager.h \
     gui.h \
-    paramscounting.h \
+    player/paramscounting.h \
     player.h \
     player/playerinventory.h \
     player/playerclass.h \

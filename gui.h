@@ -5,6 +5,9 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QProgressBar>
+#include <QTextBrowser>
+
+#include "player/playerinventory.h"
 
 class Gui : public QWidget
 {
@@ -15,6 +18,8 @@ public:
     void updateFullPlayerInfo(int ** stats, int level,  QString raceName, QString className, int step, int health);
     // update health
     void updateHealths(int health);
+    //update inventory size status
+    void updateInventorySizeStatus(inventoryStatus * status);
     // method to change gui to Game Gui
     void startGame();
 
@@ -29,6 +34,7 @@ private:
     void enterUiHide();  // hide enter ui
     void gameUiSetup();  // game Ui window initilize
     void gameUiSetup_if();  // for info labels game Ui window initilize
+    void gameUiSetup_inv(); // for invenroty setup Ui window initilize
     void connectInit();    // all connects initilize
 
 
@@ -55,6 +61,9 @@ private:
     QLabel * label_class_c;
     QLabel * label_class;
     QProgressBar * healthBar;
+    QTextBrowser * inventoryBrowser;
+    QLabel * label_inventory_c;
+    QLabel * label_inventory;
 
 
 
