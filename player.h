@@ -5,6 +5,7 @@
 #include "player/playerrace.h"
 #include "player/playerclass.h"
 #include "player/playerinventory.h"
+#include "equip/equip.h"
 
 #include <QDebug>
 
@@ -21,7 +22,9 @@ public:
     QString getPlayerRaceName();
     QString getPlayerClassName();
     int getPlayerStep();
-    inventoryStatus * getInventoryStatus();
+    inventoryStatus * getInventory();
+    // returns string information about equipment
+    QSharedPointer<EquipStatus> getGivenEquipInformation(int id);
 
 private:
     // private classes for main params of player

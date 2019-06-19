@@ -22,6 +22,7 @@ private:
 
 private slots:
    void startGame();    // main method to start game, make all inits
+   void onGuiInventoryEquipSelected( int order_id); // reacting on gui signal when equip in inventory selected
 };
 
 #endif // GAMEMANAGER_H

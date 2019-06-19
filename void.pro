@@ -25,6 +25,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        equip/equip.cpp \
+        equip/equipfactory.cpp \
+        equip/weapon.cpp \
         gamemanager.cpp \
         gui.cpp \
         main.cpp \
@@ -37,6 +40,9 @@ SOURCES += \
         testwidget.cpp
 
 HEADERS += \
+    equip/equip.h \
+    equip/equipfactory.h \
+    equip/weapon.h \
     gamemanager.h \
     gui.h \
     player/paramscounting.h \

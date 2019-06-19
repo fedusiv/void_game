@@ -1,0 +1,20 @@
+Equipment.
+
+Equipment devide to 4 types:
+    Weapon,
+    Components,
+    Cloth,
+    Usable
+
+Each equipment has
+	name : name of equipment
+	level : level of power of equipment
+	desc: lore information about equipmen
+	skills: list of skills, that equip use
+	info: some information about equip
+	params: like armor, or lifetime
+
+Weapon
+it is premanent equip for making some actions( damage, heal, magic, etc)
+
+	

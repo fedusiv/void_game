@@ -1,4 +1,5 @@
 #include "player.h"
+#include "equip/equipfactory.h"
 
 Player::Player() : _Step(0)
 {
@@ -9,6 +10,10 @@ Player::Player() : _Step(0)
 
     // set inventory size
     Inventory->recalculateInventorySize(Stats->getLevel());
+    // When created new player must be added simple weapon such as wooden stick
+    EquipFactory * ef_instance =  EquipFactory::getInstance();
+    Inventory->addToInventory(ef_instance->createEquip(EquipType::Weapon,0));
+
 }
 
 int ** Player::getPlayerStats()
@@ -41,7 +46,18 @@ int Player::getPlayerStep()
     return _Step;
 }
 
-inventoryStatus *Player::getInventoryStatus()
+inventoryStatus *Player::getInventory()
 {
- return Inventory->getInventoryStatus();
+    return Inventory->getInventoryStatus();
+}
+
+/*
+ * desc : return string information about equipment
+ * info and desc devided by '@' symbol
+ * @param : id order of equipment in gui implementation. It must be the same as in inventory
+ * @return : QString with info and desc information.
+ */
+QSharedPointer<EquipStatus> Player::getGivenEquipInformation( int id )
+{
+    return Inventory->getEquipmentInfo( id );
 }

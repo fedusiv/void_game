@@ -1,4 +1,5 @@
 #include "gui.h"
+#include <QDebug>
 
 Gui::Gui(QWidget *parent) : QWidget(parent)
 {
@@ -25,9 +26,24 @@ void Gui::updateFullPlayerInfo(int **stats, int level, QString raceName, QString
     healthBar->setValue(health);
 }
 
-void Gui::updateInventorySizeStatus(inventoryStatus * status)
+void Gui::updateInventory(inventoryStatus * status)
 {
     label_inventory->setText( QString::number( *(status->size) ) + " / " + QString::number( *(status->max) ));
+    for( int i = 0; i < *(status->size); i++)
+        inventoryBrowser->addItem(status->list->at(i));
+}
+/*
+ * desc : show information about selected element in inventory
+ */
+void Gui::updateInfoElement(QSharedPointer<EquipStatus> equip)
+{
+    infoGroupBox->setTitle(equip->name);
+    QString full = QString(
+                equip->info + '\n' + (equip->equiped ? "Equipped" : "Useless") +
+                '\n' + "Size : " + QString::number(equip->size));
+    label_infoInfo->setText(full);
+    label_infoDesc->setText(equip->desc);
+    infoGroupBox->show();
 }
 
 void Gui::startGame()
@@ -48,10 +64,16 @@ void Gui::enterUiSetup()
     button_Score->setGeometry(QRect(QPoint(150, 150),
                                     QSize(80, 40)));
 
+    // connect part of GUI
+    connect(button_Start, SIGNAL(clicked()) , this, SLOT(button_StartClicked()));
+
 }
 
 void Gui::enterUiHide()
 {
+    // disconnect part
+    disconnect(button_Start, SIGNAL(clicked()) , this, SLOT(button_StartClicked()));
+
     button_Start->hide();
     button_Score->hide();
     this->hide();
@@ -61,8 +83,9 @@ void Gui::gameUiSetup()
 {
     this->setFixedSize(800,500);
 
-    gameUiSetup_if();
-    gameUiSetup_inv();
+    gameUiSetup_playerInfo();   // setup player information
+    gameUiSetup_inv();  // setup inventory
+    gameUiSetup_info(); // setup informationbox
 
     this->show();
 }
@@ -70,7 +93,7 @@ void Gui::gameUiSetup()
 
 void Gui::connectInit()
 {
-    connect(button_Start, SIGNAL(clicked()) , this, SLOT(button_StartClicked()));
+    //connect(inventoryBrowser, SIGNAL(itemClicked()), this, SLOT(onInventoryItemSelected()));
 }
 
 void Gui::button_StartClicked()
@@ -79,6 +102,41 @@ void Gui::button_StartClicked()
 }
 
 
+/*
+ * desc : slots reacting when clicked on inventory equipment name
+ *
+ */
+void Gui::onInventoryItemSelected(QListWidgetItem *item)
+{
+    Q_UNUSED(item);
+    emit inventoryElementSelected(inventoryBrowser->currentRow());
+}
+/*
+ * Initilize gui part for information box
+ * that shows info about chosen element
+ */
+void Gui::gameUiSetup_info()
+{
+    infoGroupBox = new QGroupBox(this);
+    infoGroupBox->setGeometry(140,20,120,210);
+
+    label_infoInfo = new QLabel(infoGroupBox);
+    label_infoInfo->setGeometry(2,22, 110, 130);
+    label_infoInfo->setWordWrap(true);
+    label_infoInfo->setAlignment(Qt::AlignLeft | Qt::AlignTop );
+
+    label_infoDesc = new QLabel(infoGroupBox);
+    label_infoDesc->setGeometry(2,120, 110, 90);
+    label_infoDesc->setStyleSheet("font-style: italic");
+    label_infoDesc->setWordWrap(true);
+    label_infoDesc->setAlignment( Qt::AlignLeft | Qt::AlignBottom );
+
+    infoGroupBox->hide();
+
+}
+/*
+ * setup inventory gui, qlistwidget + label to show
+ */
 void Gui::gameUiSetup_inv()
 {
     label_inventory = new QLabel(this);
@@ -87,12 +145,14 @@ void Gui::gameUiSetup_inv()
     label_inventory_c = new QLabel("Size", this);
     label_inventory_c->setGeometry(20,250,40,20);
 
-    inventoryBrowser = new QTextBrowser(this);
+    inventoryBrowser = new QListWidget(this);
     inventoryBrowser->setGeometry(20,270,100,180);
+
+    // inventory connects
+    connect(inventoryBrowser, &QListWidget::itemClicked, this, &Gui::onInventoryItemSelected);
 }
 
-
-void Gui::gameUiSetup_if()
+void Gui::gameUiSetup_playerInfo()
 {
     int ilsp = 20;     // started point for info lables;
     int ilsp_s = 20;   // step for started point for info lables;

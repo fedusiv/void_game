@@ -5,7 +5,8 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QProgressBar>
-#include <QTextBrowser>
+#include <QListWidget>
+#include <QGroupBox>
 
 #include "player/playerinventory.h"
 
@@ -19,12 +20,17 @@ public:
     // update health
     void updateHealths(int health);
     //update inventory size status
-    void updateInventorySizeStatus(inventoryStatus * status);
+    void updateInventory(inventoryStatus * status);
+    //update information about selected equip
+    // TODO: overload this method for skills and other
+    void updateInfoElement(QSharedPointer<EquipStatus> equip);
     // method to change gui to Game Gui
     void startGame();
 
+
 signals:
     void startSignal();         // signal to start game
+    void inventoryElementSelected(int order_id);    // signal said, that equipment was selected in inventory browser
 
 
 public slots:
@@ -33,9 +39,11 @@ private:
     void enterUiSetup(); // enter  Ui initilize
     void enterUiHide();  // hide enter ui
     void gameUiSetup();  // game Ui window initilize
-    void gameUiSetup_if();  // for info labels game Ui window initilize
+    void gameUiSetup_playerInfo();  // for info labels game Ui window initilize
     void gameUiSetup_inv(); // for invenroty setup Ui window initilize
-    void connectInit();    // all connects initilize
+    void gameUiSetup_info();// for information box Ui window initilize
+    void connectInit();    // if need initilize connections except gui connections,
+                           // cause not all gui elements created at start
 
 
     // UI elements of enter window
@@ -44,6 +52,7 @@ private:
 
     // UI elements of Game window
     // c label with constant information
+    // info gui elements
     QLabel * label_level_c;
     QLabel * label_level;
     QLabel * label_strength_c;
@@ -61,16 +70,25 @@ private:
     QLabel * label_class_c;
     QLabel * label_class;
     QProgressBar * healthBar;
-    QTextBrowser * inventoryBrowser;
+    // inventory gui elements
+    QListWidget* inventoryBrowser;
     QLabel * label_inventory_c;
     QLabel * label_inventory;
+    //information box
+    QGroupBox * infoGroupBox;
+    QLabel * label_infoInfo;  // shows information
+    QLabel * label_infoDesc;  // shows description
 
 
 
 
 
 private slots:
+    // reacting when start button clicked
     void button_StartClicked();
+
+    // reacting when was clicked on inventory equip name
+    void onInventoryItemSelected(QListWidgetItem *item);
 };
 
 #endif // GUI_H
