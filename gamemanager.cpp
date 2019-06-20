@@ -16,6 +16,8 @@ void GameManager::connectInit()
 {
     connect(gui, SIGNAL(startSignal()), this, SLOT(startGame()));
     connect(gui, &Gui::inventoryElementSelected,this, &GameManager::onGuiInventoryEquipSelected);
+    connect(gui, &Gui::inventoryEquipElement, this, &GameManager::onGuiInventoryEquipElement);
+    connect(gui, &Gui::inventoryRemoveElement, this, &GameManager::onGuiInventoryRemoveEquip);
 }
 
 void GameManager::startGame()
@@ -43,4 +45,29 @@ void GameManager::onGuiInventoryEquipSelected(int order_id)
 {
     QSharedPointer<EquipStatus> pnt = player->getGivenEquipInformation( order_id );
     gui->updateInfoElement(pnt);
+}
+
+/*
+ * desc: slots react on gui signal to equip or disequip(take off) equipment form inventory
+ *  gamemanager send request to player object to procced this and return to gui updated info about element
+ * @param : id in order of element in inventory list
+ */
+void GameManager::onGuiInventoryEquipElement(int order_id)
+{
+    EquipReturnCode err =  player->equipEquipmentElement( order_id );
+    if ( err == EquipReturnCode::SUCCESS)
+    {
+        QSharedPointer<EquipStatus> pnt = player->getGivenEquipInformation( order_id );
+        gui->updateInfoElement(pnt);
+    }
+    else
+    {
+        gui->showWarningMessage(err);
+    }
+}
+
+void GameManager::onGuiInventoryRemoveEquip(int order_id)
+{
+    player->inventoryRemoveEquip( order_id );
+    gui->updateInventory(player->getInventory());
 }

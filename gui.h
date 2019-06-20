@@ -7,8 +7,11 @@
 #include <QProgressBar>
 #include <QListWidget>
 #include <QGroupBox>
+#include <QFrame>
+#include <QMessageBox>
 
 #include "player/playerinventory.h"
+#include "returncodes.h"
 
 class Gui : public QWidget
 {
@@ -27,10 +30,14 @@ public:
     // method to change gui to Game Gui
     void startGame();
 
+    // shows messages if some problems appears with equipment proccess
+    void showWarningMessage( EquipReturnCode err);
 
 signals:
     void startSignal();         // signal to start game
     void inventoryElementSelected(int order_id);    // signal said, that equipment was selected in inventory browser
+    void inventoryEquipElement( int order_id);      // signal, that need to equip or take off element from inventory
+    void inventoryRemoveElement( int orded_id );    // signal, that said to remove from inventory choosen element
 
 
 public slots:
@@ -74,6 +81,9 @@ private:
     QListWidget* inventoryBrowser;
     QLabel * label_inventory_c;
     QLabel * label_inventory;
+    QFrame * inventoryManagment_Frame;      // frame that holds button to managment inventory
+    QPushButton * inventoryRemoveButton;    // button removes equipment from inventory
+    QPushButton * inventoryEquipButton;     // button equip or disequip equipment
     //information box
     QGroupBox * infoGroupBox;
     QLabel * label_infoInfo;  // shows information
@@ -89,6 +99,10 @@ private slots:
 
     // reacting when was clicked on inventory equip name
     void onInventoryItemSelected(QListWidgetItem *item);
+    // reacting when was clicked on equip or take off button in inventory
+    void onInventoryEquipButton();
+    // reacting when was clicked to remove equip from inventory
+    void onInventoryRemoveEquipButton();
 };
 
 #endif // GUI_H

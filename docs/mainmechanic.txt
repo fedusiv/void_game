@@ -1,0 +1,17 @@
+Main mechanic of game.
+There is 4 types in a game:
+ Power (red)
+ Agility (green)
+ Energy (blue)
+ Vitality (black)
+
+Player upgrade this params each level. Also each equipment has own type, or combi of types. Race or class also join with this types.
+Main action - fights based on card-like games, player just choose that skill(card) he(she) want to use. Each skills has a price, so this price is in this type points.
+Based on what equipment player wears and what points was upgraded, player has own mount of type points. 
+
+If you dismiss a little bit, let me explain more clearly.
+Types - it is a 4 types. 
+Typepoint - it is like money for using skills. Each skill has own price, and player has own pool of this "money". Depends that player collect and choosen, it could just give all points in start of fight, or it can each turn come to pool.
+
+
+

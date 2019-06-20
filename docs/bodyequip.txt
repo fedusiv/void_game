@@ -1,0 +1,5 @@
+Body equip
+Equip that is weared on the body
+
+Level 0:
+	Old mage rob. Defence : 1

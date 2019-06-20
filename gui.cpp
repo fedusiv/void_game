@@ -28,6 +28,7 @@ void Gui::updateFullPlayerInfo(int **stats, int level, QString raceName, QString
 
 void Gui::updateInventory(inventoryStatus * status)
 {
+    inventoryBrowser->clear();
     label_inventory->setText( QString::number( *(status->size) ) + " / " + QString::number( *(status->max) ));
     for( int i = 0; i < *(status->size); i++)
         inventoryBrowser->addItem(status->list->at(i));
@@ -40,16 +41,46 @@ void Gui::updateInfoElement(QSharedPointer<EquipStatus> equip)
     infoGroupBox->setTitle(equip->name);
     QString full = QString(
                 equip->info + '\n' + (equip->equiped ? "Equipped" : "Useless") +
-                '\n' + "Size : " + QString::number(equip->size));
+                '\n' + "Size : " + QString::number(equip->size) +
+                '\n' + "Level : " + QString::number(equip->level));
     label_infoInfo->setText(full);
     label_infoDesc->setText(equip->desc);
-    infoGroupBox->show();
+
+    if( equip->equiped )
+    {
+        // equipment equipped, opportunity to take off from player
+        inventoryEquipButton->setText("Take off");
+    }else
+    {
+        // equipment just useless lying in players inventory, so give opportunity to equip
+        inventoryEquipButton->setText("Equip");
+    }
+
+    inventoryManagment_Frame->show();   // shows frame of inventory managment
+    infoGroupBox->show();   // shows info box
 }
 
 void Gui::startGame()
 {
     enterUiHide();
     gameUiSetup();
+}
+
+void Gui::showWarningMessage(EquipReturnCode err)
+{
+    QString msg;
+    switch ( err )
+    {
+        case EquipReturnCode::LEVEL_ERROR:
+        msg = "Not enough level for this";
+        break;
+        case EquipReturnCode::POINTS_ERROR:
+        msg = "Not enough  points for this";
+        break;
+        case EquipReturnCode::SUCCESS:
+        break;
+    }
+    QMessageBox::warning(this, "Cannot!",msg);
 }
 
 void Gui::enterUiSetup()
@@ -111,6 +142,21 @@ void Gui::onInventoryItemSelected(QListWidgetItem *item)
     Q_UNUSED(item);
     emit inventoryElementSelected(inventoryBrowser->currentRow());
 }
+
+/*
+ * desc : slots reacting when clicked on inventory equip button
+ * to equip or take off equipment. It just send to player inventory equipment id, and
+ * inventory desides inside that need to do with equipment. take off or equip
+ */
+void Gui::onInventoryEquipButton()
+{
+    emit inventoryEquipElement(inventoryBrowser->currentRow());
+}
+
+void Gui::onInventoryRemoveEquipButton()
+{
+    emit inventoryRemoveElement(inventoryBrowser->currentRow());
+}
 /*
  * Initilize gui part for information box
  * that shows info about chosen element
@@ -127,7 +173,9 @@ void Gui::gameUiSetup_info()
 
     label_infoDesc = new QLabel(infoGroupBox);
     label_infoDesc->setGeometry(2,120, 110, 90);
-    label_infoDesc->setStyleSheet("font-style: italic");
+    label_infoDesc->setStyleSheet("font-style: italic ; \
+                                   font-size : 9pt");
+
     label_infoDesc->setWordWrap(true);
     label_infoDesc->setAlignment( Qt::AlignLeft | Qt::AlignBottom );
 
@@ -148,8 +196,24 @@ void Gui::gameUiSetup_inv()
     inventoryBrowser = new QListWidget(this);
     inventoryBrowser->setGeometry(20,270,100,180);
 
+    inventoryManagment_Frame = new QFrame(this);
+    inventoryManagment_Frame->setGeometry(20, 450, 100, 30);
+
+    inventoryEquipButton = new QPushButton(inventoryManagment_Frame);
+    inventoryEquipButton->setGeometry(1,1,48,20);
+    inventoryEquipButton->setStyleSheet("font-size : 9pt");
+
+    inventoryRemoveButton = new QPushButton(inventoryManagment_Frame);
+    inventoryRemoveButton->setText("Remove");
+    inventoryRemoveButton->setStyleSheet("font-size : 9pt");
+    inventoryRemoveButton->setGeometry(50,1,48,20);
+
+    inventoryManagment_Frame->hide();   // shows inventory managment frame only when item selected.
+
     // inventory connects
     connect(inventoryBrowser, &QListWidget::itemClicked, this, &Gui::onInventoryItemSelected);
+    connect(inventoryEquipButton, &QPushButton::clicked, this, &Gui::onInventoryEquipButton);
+    connect(inventoryRemoveButton, &QPushButton::clicked, this, &Gui::onInventoryRemoveEquipButton);
 }
 
 void Gui::gameUiSetup_playerInfo()

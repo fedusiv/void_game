@@ -6,6 +6,7 @@
 #include "player/playerclass.h"
 #include "player/playerinventory.h"
 #include "equip/equip.h"
+#include "returncodes.h"
 
 #include <QDebug>
 
@@ -25,6 +26,10 @@ public:
     inventoryStatus * getInventory();
     // returns string information about equipment
     QSharedPointer<EquipStatus> getGivenEquipInformation(int id);
+    // equip or disequip choosen element
+    EquipReturnCode equipEquipmentElement( int id );
+    // remove given equipment from inventory
+    void inventoryRemoveEquip( int id);
 
 private:
     // private classes for main params of player

@@ -9,7 +9,12 @@ public:
     Weapon(int level);
     Weapon(QString name);
     Weapon(QString name, int level);
-    ~Weapon();
+    ~Weapon() override;
+
+    int getHands() override { return _Hands;}
+
+protected:
+    int _Hands; // shows how many hands require for using this weapon
 };
 
 #endif // WEAPON_H

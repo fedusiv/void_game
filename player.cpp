@@ -13,6 +13,7 @@ Player::Player() : _Step(0)
     // When created new player must be added simple weapon such as wooden stick
     EquipFactory * ef_instance =  EquipFactory::getInstance();
     Inventory->addToInventory(ef_instance->createEquip(EquipType::Weapon,0));
+    Inventory->addToInventory(ef_instance->createEquip(EquipType::Cloth,0));
 
 }
 
@@ -60,4 +61,19 @@ inventoryStatus *Player::getInventory()
 QSharedPointer<EquipStatus> Player::getGivenEquipInformation( int id )
 {
     return Inventory->getEquipmentInfo( id );
+}
+
+/*
+ * desc : equip choosen in gui inventory equipment element
+ * @param : id in list of gui elemnts, it must be same as in inventory elemets list
+ * @return : error status of operation
+ */
+EquipReturnCode Player::equipEquipmentElement(int id)
+{
+    return Inventory->equipEquipmentElement(Stats->getLevel(), Stats->getStats(), id);
+}
+
+void Player::inventoryRemoveEquip(int id)
+{
+    Inventory->removeFromInventory( id );
 }

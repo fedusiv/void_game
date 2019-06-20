@@ -17,4 +17,3 @@ Each equipment has
 Weapon
 it is premanent equip for making some actions( damage, heal, magic, etc)
 
-	

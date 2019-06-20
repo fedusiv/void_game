@@ -17,9 +17,9 @@ Equip *EquipFactory::createEquip(EquipType type, int level)
         equip = new Weapon(level);
         break;
     case EquipType::Components:
-
         break;
     case EquipType::Cloth:
+        equip = new Cloth(level);
         break;
     case EquipType::Usable:
         break;

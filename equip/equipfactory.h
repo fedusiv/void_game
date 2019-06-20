@@ -3,6 +3,8 @@
 
 #include "equip.h"
 #include "weapon.h"
+#include "cloth.h"
+#include "memory"
 /*
  *
  * Factory pattern class to create Equipment, this class communicate with other stuff

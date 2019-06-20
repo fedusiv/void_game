@@ -1,0 +1,14 @@
+Inventory.
+
+Place where player keep all equipment stuff. Inventory has max size, so player can't store everything on his game's way.
+In inventory you can equip:
+	Weapon
+	Head-cloth
+	Body-cloth
+	Arms-cloth
+	Legs-cloth
+	Feet-cloth
+	Rings, Amulets.
+
+Each equipment has own level, it sign the power of equipment
+For some equipment also needs type params. Example, for equip ring1 you need 3 Energy, for equip ring2 you need 2 Energy, but you have 4, so you can equip only one of it, if you will have 4 Energy params point you can equip both.

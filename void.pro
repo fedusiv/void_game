@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        equip/cloth.cpp \
         equip/equip.cpp \
         equip/equipfactory.cpp \
         equip/weapon.cpp \
@@ -40,6 +41,7 @@ SOURCES += \
         testwidget.cpp
 
 HEADERS += \
+    equip/cloth.h \
     equip/equip.h \
     equip/equipfactory.h \
     equip/weapon.h \
@@ -51,6 +53,7 @@ HEADERS += \
     player/playerclass.h \
     player/playerrace.h \
     player/playerstats.h \
+    returncodes.h \
     testwidget.h
 
 FORMS += \
