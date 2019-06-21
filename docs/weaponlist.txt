@@ -2,5 +2,5 @@ Level 0:
 
 Wood Stick
 	skills: small fireball, deals 1dmg for 1 energy point
-Daddy's Dagger:
+Rusty Dagger:
 	skills: simple hit, deals 1 dmg for 1 agility point

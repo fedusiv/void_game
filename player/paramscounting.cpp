@@ -16,3 +16,9 @@ int ParamsCounting::inventorySizeCount( int level)
 {
     return 10 + level*2;
 }
+
+int ParamsCounting::randomSimpleCount(int size)
+{
+    int v = QRandomGenerator::global()->bounded(size);
+    return v;
+}

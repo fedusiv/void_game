@@ -3,6 +3,33 @@
 
 EquipFactory * EquipFactory::instance = nullptr;
 
+
+Equip *EquipFactory::createWeapon(int level)
+{
+    QJsonObject obj =  JsonReader::getInstance()->weaponRead(level);
+    int size = obj["size"].toInt();
+    int id = ParamsCounting::randomSimpleCount(size);
+    QJsonArray array = obj["weapon"].toArray();
+    QJsonValue val = array.at(id);
+    obj = val.toObject();
+
+    return new Weapon(
+                obj["name"].toString(),
+                obj["level"].toInt(),
+                obj["desc"].toString(),
+                obj["hands"].toInt(),
+                obj["size"].toInt(),
+                obj["req"].toString()
+                );
+
+}
+
+Equip *EquipFactory::createCloth(int level)
+{
+
+}
+
+
 /* desc: Create Equip object
  *  @param: type of Equipment
  *  @param level of equipment
@@ -14,7 +41,7 @@ Equip *EquipFactory::createEquip(EquipType type, int level)
     switch(type)
     {
     case EquipType::Weapon:
-        equip = new Weapon(level);
+        equip = createWeapon(level);
         break;
     case EquipType::Components:
         break;

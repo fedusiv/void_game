@@ -1,0 +1,30 @@
+{
+  "size"   : 3,
+  "weapon" : 
+  [ 
+  { 
+    "name" : "Wood Stick",
+    "desc" : "Old wizard stick",
+    "level": 0,
+    "hands": 1,
+    "size" : 1,
+    "req"  : "0000"
+  },
+  { 
+    "name" : "Rusty Dagger",
+    "desc" : "Dagger from pirate's boat",
+    "level": 0,
+    "hands": 1,
+    "size" : 1,
+    "req"  : "0000"
+  },
+  {
+    "name" : "Rusty Axe",
+    "desc" : "Big old lamber axe",
+    "level": 0,
+    "hands": 2,
+    "size" : 1,
+    "req"  : "0000"
+  }
+  ]
+}

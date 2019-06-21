@@ -31,6 +31,7 @@ SOURCES += \
         equip/weapon.cpp \
         gamemanager.cpp \
         gui.cpp \
+        json_reader.cpp \
         main.cpp \
         player/paramscounting.cpp \
         player.cpp \
@@ -47,6 +48,7 @@ HEADERS += \
     equip/weapon.h \
     gamemanager.h \
     gui.h \
+    json_reader.h \
     player/paramscounting.h \
     player.h \
     player/playerinventory.h \
@@ -63,3 +65,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc

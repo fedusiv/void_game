@@ -19,6 +19,13 @@ Weapon::Weapon(QString name):  Equip(name)
 
 }
 
+Weapon::Weapon(QString name, int level, QString desc, int hands, int size, QString req) :
+    Equip(name, desc, req, level, EquipType::Weapon, size) ,
+    _Hands(hands)
+{
+
+}
+
 Weapon::~Weapon()
 {
     qDebug() << "Weapon deleted " + _Name ;

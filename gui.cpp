@@ -39,8 +39,9 @@ void Gui::updateInventory(inventoryStatus * status)
 void Gui::updateInfoElement(QSharedPointer<EquipStatus> equip)
 {
     infoGroupBox->setTitle(equip->name);
+    QString iseq = (equip->equiped ? "Equipped" : "Useless");
     QString full = QString(
-                equip->info + '\n' + (equip->equiped ? "Equipped" : "Useless") +
+                iseq +
                 '\n' + "Size : " + QString::number(equip->size) +
                 '\n' + "Level : " + QString::number(equip->level));
     label_infoInfo->setText(full);

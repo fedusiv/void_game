@@ -5,6 +5,9 @@
 #include "weapon.h"
 #include "cloth.h"
 #include "memory"
+#include "json_reader.h"
+#include "player/paramscounting.h"
+
 /*
  *
  * Factory pattern class to create Equipment, this class communicate with other stuff
@@ -14,6 +17,8 @@ class EquipFactory
 {
 private:
     static EquipFactory * instance;
+    Equip * createWeapon(int level);    // creating weapon with exactly given level
+    Equip * createCloth(int level);     // creating cloth with exactly given level
     EquipFactory(){}
 public:
     static EquipFactory * getInstance()

@@ -12,6 +12,18 @@ Equip::Equip(QString name) : _Name(name), _Size(1), _Equipped(false)
     for ( int i = 0; i < 4; i++) _RequiredPoints[i] = 0 ;
 }
 
+Equip::Equip(QString name, QString desc, QString req, int level, EquipType type,  int size) :
+    _Level(level), _Name(name),
+    _Size(size), _Desc(desc),
+    _Equipped(false), _Type(type)
+{
+    // convert qsrting requirments type note to int array
+    for ( int i = 0; i < 4; i++)
+    {
+        _RequiredPoints[i] = req.at(i).unicode() - 0x30;    // 0x30 '0' symbol in ascii
+    }
+}
+
 int Equip::getLevel()
 {
     return _Level;

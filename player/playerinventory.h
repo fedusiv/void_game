@@ -20,14 +20,12 @@ class EquipStatus{
     EquipStatus(Equip * equip)
     {
         name = equip->getName();
-        info = equip->getInfo();
         desc = equip->getDesc();
         size = equip->getSize();
         equiped = equip->isEquipped();
         level = equip->getLevel();
     }
-    //~EquipStatus(){delete this;}
-    QString info;
+    ~EquipStatus(){}
     QString desc;
     QString name;
     int size;
@@ -79,7 +77,7 @@ private:
 
 
    void equipWeapon(Equip * equip);             // equip given weapon
-   void equipCloth( Equip * cloth);             // equip given cloth
+   void equipCloth (Equip * cloth);             // equip given cloth
    void equipClothBody( Equip * cloth );        // equip given body cloth
 
 

@@ -32,6 +32,7 @@ class Equip
 public:
     Equip(int level);
     Equip(QString name);
+    Equip(QString name, QString desc, QString req,int level, EquipType type,  int size = 1 );
     virtual ~Equip(){ qDebug() << "Equip deleted " + _Name; }
 
     int getLevel(); // returns equipment level
