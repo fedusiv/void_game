@@ -3,19 +3,19 @@
   "cloth" :
   [
   {
-    "name" : "Mage robe",
+    "name" : "Shapka 1",
     "desc" : "Old wizard poor robe",
     "level": 0,
     "armor": 0,
-    "size" : 1,
+    "size" : 0.5,
     "req"  : "0000"
   },
   {
-    "name" : "Old Cape",
+    "name" : "Shapka 2",
     "desc" : "old worn cape with holes ",
     "level": 0,
     "armor": 1,
-    "size" : 1,
+    "size" : 1.1,
     "req"  : "0000"
   }
   ]

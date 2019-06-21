@@ -18,12 +18,13 @@ enum class EquipType{
 /*
  * Types of only cloth equipment
  */
-enum class EquipClothType{
+enum  EquipClothType{
     Head,
     Body,
     Arms,
     Legs,
     Feet,
+    Accessorize,
     NotCloth
 };
 
@@ -32,11 +33,11 @@ class Equip
 public:
     Equip(int level);
     Equip(QString name);
-    Equip(QString name, QString desc, QString req,int level, EquipType type,  int size = 1 );
+    Equip(QString name, QString desc, QString req,int level, EquipType type,  float size = 1 );
     virtual ~Equip(){ qDebug() << "Equip deleted " + _Name; }
 
     int getLevel(); // returns equipment level
-    int getSize();  // returns equipment size
+    float getSize();  // returns equipment size
     QString getName();// returns name of equipment
     void setName(QString name);
     QString getInfo();    // return string info about equip
@@ -50,18 +51,17 @@ public:
     // virtual methods for children class
     virtual int getHands() { return 0;} // virtual method for weapon returns count of required hands
     virtual EquipClothType getClothType() { return EquipClothType::NotCloth;} // virtual method for get type of cloth equipment
-
+    virtual QString getStringType() { return "Equip";}                          // virtual method for printing that is it equipment
 protected:
     int _Level;     // level of equipment
     QString _Name;  // name of equipment
-    int _Size;      // size in inventory of current inventory
+    float _Size;      // size in inventory of current inventory
     QString _Desc;  // lore description of equip
     QString _Info;  // some information about equipment
     bool _Equipped;  // flag shows is equipment equipped
     int _RequiredPoints[4]; // array that represent requirmet points of 4 types ( str, agil, energy, vital)
 
     EquipType  _Type;// type of equipment
-
 
 };
 

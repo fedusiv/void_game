@@ -6,12 +6,11 @@ JsonReader::JsonReader()
 {
 
 }
-
-int JsonReader::weaponSize(int level)
-{
-
-}
-
+/*
+ * desc : return QJsonobject of all information about weapon on it is level
+ * @param : level of weapon
+ * @return: QJsonObject
+ */
 QJsonObject JsonReader::weaponRead(int level)
 {
     QString path = ":/weapon/json_files/weaponL" + QString::number(level)  +".json";
@@ -20,3 +19,40 @@ QJsonObject JsonReader::weaponRead(int level)
     QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
     return doc.object();
 }
+
+/*
+ * desc : return QJsonobject of all information about given cloth on it is level
+ * @param : level of body cloth
+ * @return: QJsonObject
+ */
+QJsonObject JsonReader::clothBodyRead(EquipClothType type, int level)
+{
+    QString type_path;
+    switch ( type )
+    {
+    case EquipClothType::Head :
+    type_path = "head";
+    break;
+    case EquipClothType::Body :
+    type_path = "body";
+        break;
+    case EquipClothType::Arms :
+    type_path = "arms";
+        break;
+    case EquipClothType::Legs :
+    type_path = "legs";
+        break;
+    case EquipClothType::Feet :
+    type_path = "feet";
+        break;
+    case EquipClothType::Accessorize :
+    type_path = "accessorize";
+        break;
+    }
+    QString path = ":/cloth/json_files/"+type_path +"L" + QString::number(level)  +".json";
+    QFile file(path);
+    file.open(QIODevice::ReadOnly);
+    QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+    return doc.object();
+}
+

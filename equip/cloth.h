@@ -7,13 +7,14 @@ class Cloth : public Equip
 {
 public:
     Cloth(int level);
-    Cloth(QString name, int level, QString desc, int armor, int size, QString req);
+    Cloth(QString name, int level, QString desc, float armor, float size, QString req, EquipClothType type);
     ~Cloth()override;
     // return current cloth equip type
     EquipClothType getClothType() override;
+    QString getStringType() override;       // return for gui equip type
 protected:
     EquipClothType _ClothType;
-    int _Armor; // Armor parametr of Cloth
+    float _Armor; // Armor parametr of Cloth
 };
 
 #endif // CLOTH_H

@@ -9,9 +9,10 @@
 #include "returncodes.h"
 
 typedef struct inventoryStatus{
-    int * max;
-    int  * size;
+    float * max;
+    float  * size;
     QList<QString> * list;
+    int * count;
 }inventoryStatus;
 
 
@@ -20,6 +21,7 @@ class EquipStatus{
     EquipStatus(Equip * equip)
     {
         name = equip->getName();
+        type = equip->getStringType();
         desc = equip->getDesc();
         size = equip->getSize();
         equiped = equip->isEquipped();
@@ -28,7 +30,8 @@ class EquipStatus{
     ~EquipStatus(){}
     QString desc;
     QString name;
-    int size;
+    QString type;
+    float size;
     int level;
     bool equiped;
 };
@@ -69,8 +72,9 @@ public:
 
 private:
    Equipped * equipped;                         // object manipulate with equipped stuff
-   int _InventorySize_max;
-   int _InventorySize;
+   float _InventorySize_max;
+   float _InventorySize;
+   int _InventoryCount;                         // count of all stuff in equipment
    inventoryStatus _Inv_status;
    QList<Equip *> currentInventoryList;         // qlist stored pointers to  equipment
    QList<QString> currentInventoryNameList;     // qlist stored names of equipment for easily access of names to gui

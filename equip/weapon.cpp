@@ -19,7 +19,7 @@ Weapon::Weapon(QString name):  Equip(name)
 
 }
 
-Weapon::Weapon(QString name, int level, QString desc, int hands, int size, QString req) :
+Weapon::Weapon(QString name, int level, QString desc, int hands, float size, QString req) :
     Equip(name, desc, req, level, EquipType::Weapon, size) ,
     _Hands(hands)
 {
@@ -29,4 +29,9 @@ Weapon::Weapon(QString name, int level, QString desc, int hands, int size, QStri
 Weapon::~Weapon()
 {
     qDebug() << "Weapon deleted " + _Name ;
+}
+
+QString Weapon::getStringType()
+{
+    return "Weapon";
 }

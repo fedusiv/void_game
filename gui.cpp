@@ -29,8 +29,8 @@ void Gui::updateFullPlayerInfo(int **stats, int level, QString raceName, QString
 void Gui::updateInventory(inventoryStatus * status)
 {
     inventoryBrowser->clear();
-    label_inventory->setText( QString::number( *(status->size) ) + " / " + QString::number( *(status->max) ));
-    for( int i = 0; i < *(status->size); i++)
+    label_inventory->setText( QString::number( static_cast<double>(*(status->size)) ) + " / " + QString::number( static_cast<double>(*(status->max) )));
+    for( int i = 0; i < *(status->count); i++)
         inventoryBrowser->addItem(status->list->at(i));
 }
 /*
@@ -40,10 +40,10 @@ void Gui::updateInfoElement(QSharedPointer<EquipStatus> equip)
 {
     infoGroupBox->setTitle(equip->name);
     QString iseq = (equip->equiped ? "Equipped" : "Useless");
-    QString full = QString(
+    QString full = QString(equip->type + '\n' +
                 iseq +
-                '\n' + "Size : " + QString::number(equip->size) +
-                '\n' + "Level : " + QString::number(equip->level));
+                '\n' + "Size : " + QString::number(static_cast<double>(equip->size)) +
+                '\n' + "Level : " + QString::number(static_cast<double>(equip->level)));
     label_infoInfo->setText(full);
     label_infoDesc->setText(equip->desc);
 
@@ -189,10 +189,10 @@ void Gui::gameUiSetup_info()
 void Gui::gameUiSetup_inv()
 {
     label_inventory = new QLabel(this);
-    label_inventory->setGeometry(60,250,40,20);
+    label_inventory->setGeometry(50,250,55,20);
 
     label_inventory_c = new QLabel("Size", this);
-    label_inventory_c->setGeometry(20,250,40,20);
+    label_inventory_c->setGeometry(20,250,35,20);
 
     inventoryBrowser = new QListWidget(this);
     inventoryBrowser->setGeometry(20,270,100,180);

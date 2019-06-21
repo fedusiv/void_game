@@ -1,11 +1,12 @@
 #include "playerinventory.h"
 #include "player/paramscounting.h"
 
-PlayerInventory::PlayerInventory() : _InventorySize_max(8), _InventorySize(0)
+PlayerInventory::PlayerInventory() : _InventorySize_max(8), _InventorySize(0), _InventoryCount(0)
 {
     _Inv_status.max = &_InventorySize_max;
     _Inv_status.size = &_InventorySize;
     _Inv_status.list = &currentInventoryNameList;
+    _Inv_status.count = &_InventoryCount;
 
     equipped = new Equipped();
 }
@@ -45,6 +46,7 @@ void PlayerInventory::addToInventory(Equip *equip)
     currentInventoryList.append(equip);
     currentInventoryNameList.append(equip->getName());
     _InventorySize+= equip->getSize();
+    _InventoryCount++;
 }
 
 /*
@@ -74,6 +76,7 @@ void PlayerInventory::removeFromInventory(int id )
         equip->setEquipped(false);
     }
     _InventorySize-=equip->getSize();
+    _InventoryCount--;
     currentInventoryList.removeAt(id);
     currentInventoryNameList.removeAt(id);
     delete equip;

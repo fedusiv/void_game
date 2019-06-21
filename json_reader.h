@@ -6,7 +6,13 @@
 #include <QJsonArray>
 #include <QFile>
 #include <QDebug>
+#include "equip/equip.h"
 
+
+/*
+ * signleton class
+ *  read data from json files
+ */
 class JsonReader
 {
 public:
@@ -20,8 +26,9 @@ public:
         return instance;
     }
 
-    int weaponSize(int level);  // return full mount of weapons at level 0
     QJsonObject weaponRead(int level); // return information about all weapon at level;
+    QJsonObject clothBodyRead(EquipClothType type, int level ); // return information about all body's cloth at level
+
 
 private:
     JsonReader();

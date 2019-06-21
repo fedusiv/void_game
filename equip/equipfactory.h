@@ -19,6 +19,7 @@ private:
     static EquipFactory * instance;
     Equip * createWeapon(int level);    // creating weapon with exactly given level
     Equip * createCloth(int level);     // creating cloth with exactly given level
+    Equip * createCloth(EquipClothType type, int level); // create exactly given type of cloth
     EquipFactory(){}
 public:
     static EquipFactory * getInstance()
@@ -32,6 +33,8 @@ public:
 
     // create equip
     Equip * createEquip(EquipType type, int level);
+    // create exactly given type of cloth
+    Equip * createClothEquip(EquipClothType type, int level);
 
 };
 

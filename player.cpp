@@ -13,7 +13,7 @@ Player::Player() : _Step(0)
     // When created new player must be added simple weapon such as wooden stick
     EquipFactory * ef_instance =  EquipFactory::getInstance();
     Inventory->addToInventory(ef_instance->createEquip(EquipType::Weapon,0));
-    Inventory->addToInventory(ef_instance->createEquip(EquipType::Cloth,0));
+    Inventory->addToInventory(ef_instance->createClothEquip(EquipClothType::Body,0));
 
 }
 

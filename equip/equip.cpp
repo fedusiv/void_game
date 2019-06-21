@@ -1,18 +1,18 @@
 #include "equip.h"
 
-Equip::Equip(int level) :  _Level(level), _Name("nameless"), _Size(1), _Equipped(false)
+Equip::Equip(int level) :  _Level(level), _Name("nameless"), _Size(1.0), _Equipped(false)
 {
     // set required points to zero
     for ( int i = 0; i < 4; i++) _RequiredPoints[i] = 0 ;
 }
 
-Equip::Equip(QString name) : _Name(name), _Size(1), _Equipped(false)
+Equip::Equip(QString name) : _Name(name), _Size(1.0), _Equipped(false)
 {
     // set required points to zero
     for ( int i = 0; i < 4; i++) _RequiredPoints[i] = 0 ;
 }
 
-Equip::Equip(QString name, QString desc, QString req, int level, EquipType type,  int size) :
+Equip::Equip(QString name, QString desc, QString req, int level, EquipType type,  float size) :
     _Level(level), _Name(name),
     _Size(size), _Desc(desc),
     _Equipped(false), _Type(type)
@@ -29,7 +29,7 @@ int Equip::getLevel()
     return _Level;
 }
 
-int Equip::getSize()
+float Equip::getSize()
 {
     return _Size;
 }

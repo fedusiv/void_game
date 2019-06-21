@@ -4,5 +4,6 @@
     </qresource>
     <qresource prefix="/cloth">
         <file>json_files/bodyL0.json</file>
+        <file>json_files/headL0.json</file>
     </qresource>
 </RCC>
