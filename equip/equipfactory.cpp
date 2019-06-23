@@ -11,15 +11,20 @@ Equip * EquipFactory::createWeapon(int level)
     int id = ParamsCounting::randomSimpleCount(size);
     QJsonArray array = obj["weapon"].toArray();
     QJsonValue val = array.at(id);
-    obj = val.toObject();
-
+    obj = val.toObject(); // obj holds all data about choosen weapon
+    QJsonObject skill = obj["skill"].toObject(); // get information about skill inside weapon
+    Skill * s = SkillFactory::getInstance()->createSkill(skill);
+    array = obj["dmg"].toArray();
+    float dmg = ParamsCounting::weaponCalculateDamage( array.at(0).toDouble() , array.at(1).toDouble());
     return new Weapon(
                 obj["name"].toString(),
                 obj["level"].toInt(),
                 obj["desc"].toString(),
                 obj["hands"].toInt(),
                 static_cast<float>(obj["size"].toDouble()),
-                obj["req"].toString()
+                obj["req"].toString(),
+                dmg,                    // weapon dmg
+                s                       // weapon skill
                 );
 
 }

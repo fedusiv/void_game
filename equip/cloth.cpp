@@ -60,3 +60,8 @@ QString Cloth::getStringType()
     }
     return s;
 }
+
+float Cloth::getArmor()
+{
+    return  _Armor;
+}

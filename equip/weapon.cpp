@@ -19,9 +19,16 @@ Weapon::Weapon(QString name):  Equip(name)
 
 }
 
-Weapon::Weapon(QString name, int level, QString desc, int hands, float size, QString req) :
+Weapon::Weapon(QString name, int level, QString desc, int hands, float size, QString req, float dmg) :
     Equip(name, desc, req, level, EquipType::Weapon, size) ,
-    _Hands(hands)
+    _Hands(hands), _Damage(dmg)
+{
+
+}
+
+Weapon::Weapon(QString name, int level, QString desc, int hands, float size, QString req, float dmg, Skill * skill) :
+    Equip(name, desc, req, level, EquipType::Weapon, skill, size ) ,
+    _Hands(hands), _Damage(dmg)
 {
 
 }

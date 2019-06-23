@@ -12,6 +12,7 @@ public:
     // return current cloth equip type
     EquipClothType getClothType() override;
     QString getStringType() override;       // return for gui equip type
+    float getArmor() override;              // return armor value
 protected:
     EquipClothType _ClothType;
     float _Armor; // Armor parametr of Cloth

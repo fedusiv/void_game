@@ -6,4 +6,7 @@
         <file>json_files/bodyL0.json</file>
         <file>json_files/headL0.json</file>
     </qresource>
+    <qresource prefix="/skills">
+        <file>json_files/weaponHitsDesc.json</file>
+    </qresource>
 </RCC>

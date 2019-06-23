@@ -28,6 +28,8 @@ public:
 
     QJsonObject weaponRead(int level); // return information about all weapon at level;
     QJsonObject clothBodyRead(EquipClothType type, int level ); // return information about all body's cloth at level
+    QStringList skillWeaponHitsDescRead(int id);    // return string name and description of weapon hit skills ability
+
 
 
 private:

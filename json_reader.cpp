@@ -55,4 +55,22 @@ QJsonObject JsonReader::clothBodyRead(EquipClothType type, int level)
     QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
     return doc.object();
 }
+/*
+ * desc : return QStringList description and name from json file, where written all descriptions about weapon hits abilities
+ * @param : iterator in JSON array
+ * @return: QStringList
+ */
+QStringList JsonReader::skillWeaponHitsDescRead(int id)
+{
+    QStringList list;
+    QString path = ":/skills/json_files/weaponHitsDesc.json";
+    QFile file(path);
+    file.open(QIODevice::ReadOnly);
+    QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+    QJsonArray array = doc.object()["desc"].toArray();
+    list.append( array[id].toString() );
+    array = doc.object()["name"].toArray();
+    list.append( array[id].toString() );
+    return list;
+}
 

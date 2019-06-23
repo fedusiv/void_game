@@ -39,6 +39,9 @@ SOURCES += \
         player/playerclass.cpp \
         player/playerrace.cpp \
         player/playerstats.cpp \
+        skills/skill.cpp \
+        skills/skill_weaponhit.cpp \
+        skills/skillfactory.cpp \
         testwidget.cpp
 
 HEADERS += \
@@ -56,6 +59,10 @@ HEADERS += \
     player/playerrace.h \
     player/playerstats.h \
     returncodes.h \
+    skills/skill.h \
+    skills/skill_types.h \
+    skills/skill_weaponhit.h \
+    skills/skillfactory.h \
     testwidget.h
 
 FORMS += \

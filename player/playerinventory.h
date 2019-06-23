@@ -26,14 +26,24 @@ class EquipStatus{
         size = equip->getSize();
         equiped = equip->isEquipped();
         level = equip->getLevel();
+        require = equip->getRequirments();
+        damage = equip->getDamage();    // weapon cannot be with 0 damage, so if it is 0 damage, it means that it is not weapon
+        armor = equip->getArmor();
+        skill = equip->getSkill();
     }
     ~EquipStatus(){}
-    QString desc;
-    QString name;
-    QString type;
-    float size;
-    int level;
-    bool equiped;
+    // Common params
+    QString desc;   // lore description
+    QString name;   // name of equipment
+    QString type;   // type of equipment
+    float size;     // size of equipment
+    int level;      // level of equipment
+    bool equiped;   // flag shows is it equipped
+    // special
+    float damage;
+    int *require;
+    float armor;
+    Skill * skill;
 };
 
 class Equipped

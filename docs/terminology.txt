@@ -1,0 +1,5 @@
+Stats - main 4 parameters. Strength, Agility, Energy, Vitality.
+Skill - Any action, that player using in fight.
+Points - is like "money" to pay for using skills.
+
+

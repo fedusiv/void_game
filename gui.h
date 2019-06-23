@@ -9,9 +9,32 @@
 #include <QGroupBox>
 #include <QFrame>
 #include <QMessageBox>
+#include <QTabWidget>
 
 #include "player/playerinventory.h"
 #include "returncodes.h"
+
+
+class SkillInfoWidget : public QWidget
+{
+      public:
+      SkillInfoWidget(QWidget * parent, QString name, QString desc) : QWidget(parent)
+      {
+           QLabel * n = new QLabel(this);
+           n->setGeometry(0,0,140,20);
+           n->setText(name);
+           n->setWordWrap(true);
+
+           QLabel * d = new QLabel(this);
+           d->setGeometry(0,20,140,190);
+           d->setText(desc);
+           d->setWordWrap(true);
+           d->setAlignment( Qt::AlignLeft | Qt::AlignTop );
+           d->setStyleSheet("font-size : 10pt");
+
+      }
+      ~SkillInfoWidget(){}
+};
 
 class Gui : public QWidget
 {
@@ -25,8 +48,9 @@ public:
     //update inventory size status
     void updateInventory(inventoryStatus * status);
     //update information about selected equip
-    // TODO: overload this method for skills and other
     void updateInfoElement(QSharedPointer<EquipStatus> equip);
+    //update skills inofrmation in skills tabwidget
+    void updateSkillInfo(Skill * skill);
     // method to change gui to Game Gui
     void startGame();
 
@@ -49,6 +73,7 @@ private:
     void gameUiSetup_playerInfo();  // for info labels game Ui window initilize
     void gameUiSetup_inv(); // for invenroty setup Ui window initilize
     void gameUiSetup_info();// for information box Ui window initilize
+    void gameUiSetup_skills();// for skills inforamtion box initilize
     void connectInit();    // if need initilize connections except gui connections,
                            // cause not all gui elements created at start
 
@@ -88,9 +113,8 @@ private:
     QGroupBox * infoGroupBox;
     QLabel * label_infoInfo;  // shows information
     QLabel * label_infoDesc;  // shows description
-
-
-
+    // skills information box
+    QTabWidget * skillTabWidget;
 
 
 private slots:

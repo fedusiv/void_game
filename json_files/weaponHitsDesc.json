@@ -1,0 +1,21 @@
+{ "name":
+        [
+        "Simple",
+        "Scaling",
+        "Scaling",
+        "Scaling",
+        "Charged",
+        "Super Charged",
+        "Cleave"
+        ],
+  "desc" :
+        [
+        "Simple hit",
+        "Damage increases from specified parameter",
+        "Chooses biggest parameter value of given, and damage increases from specified parametr",
+        "Chooses two parameters values of given, and damage increases from them",
+        "Charge weapon with additional points and increase damage",
+        "Super Charge gives additional charged attack with bigger damage and bigger cost",
+        "Cleave attack make damage through enemy armor"
+      ]
+}

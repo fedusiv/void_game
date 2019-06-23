@@ -4,18 +4,34 @@ Equip::Equip(int level) :  _Level(level), _Name("nameless"), _Size(1.0), _Equipp
 {
     // set required points to zero
     for ( int i = 0; i < 4; i++) _RequiredPoints[i] = 0 ;
+    _Skill = nullptr;
 }
 
 Equip::Equip(QString name) : _Name(name), _Size(1.0), _Equipped(false)
 {
     // set required points to zero
     for ( int i = 0; i < 4; i++) _RequiredPoints[i] = 0 ;
+    _Skill = nullptr;
 }
 
 Equip::Equip(QString name, QString desc, QString req, int level, EquipType type,  float size) :
     _Level(level), _Name(name),
     _Size(size), _Desc(desc),
     _Equipped(false), _Type(type)
+{
+    // convert qsrting requirments type note to int array
+    for ( int i = 0; i < 4; i++)
+    {
+        _RequiredPoints[i] = req.at(i).unicode() - 0x30;    // 0x30 '0' symbol in ascii
+    }
+    _Skill = nullptr;
+}
+
+// constructor with skill initilize
+Equip::Equip(QString name, QString desc, QString req, int level, EquipType type, Skill * skill,  float size) :
+    _Level(level), _Name(name),
+    _Size(size), _Desc(desc),
+    _Equipped(false), _Type(type), _Skill(skill)
 {
     // convert qsrting requirments type note to int array
     for ( int i = 0; i < 4; i++)
@@ -81,6 +97,17 @@ EquipReturnCode Equip::checkRequirments(int player_level, int **type_points)
     }
 
     return EquipReturnCode::SUCCESS;
+}
+
+int * Equip::getRequirments()
+{
+    return _RequiredPoints;
+}
+
+// return pointer to skill of equip
+Skill *Equip::getSkill()
+{
+    return _Skill;
 }
 
 
