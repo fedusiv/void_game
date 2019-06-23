@@ -10,18 +10,13 @@
     "size" : 1.1,
     "req"  : "1000",
     "dmg"  : [13,17],
-    "skill":{
-                "st" : 1,
-                "type": { "size" : 4, "types" :["1","2","3","7"] },
-                "scale_procent" :[0.05, 0.1],
-                "scale_attribute" :[0,1],
-                "cost" : "1000",
-                "charge" : 1.5,
-                "s_charge" : {
-                        "cost":[3,0,0,0],
-                        "charge" : 2.0
-                        }
-            }
+            "skill":{
+                        "type" : 1,
+                        "abil": { "size" : 5, "types" :["1","2","3","4","5"] },
+                        "scale_procent" :[0.05, 0.1],
+                        "scale_attribute" :[1,0],
+                        "cost" : "1000"
+                    }
   },
   {
     "name" : "Rusty Dagger",
@@ -32,16 +27,11 @@
     "req"  : "0100",
     "dmg"  : [12,15],
     "skill":{
-                "st" : 1,
-                "type": { "size" : 4, "types" :["1","2","3","7"] },
+                "type" : 1,
+                "abil": { "size" : 5, "types" :["1","2","3","4","5"] },
                 "scale_procent" :[0.05, 0.1],
                 "scale_attribute" :[1,0],
-                "cost" : "1000",
-                "charge" : 1.5,
-                "s_charge" : {
-                        "cost":[3,0,0,0],
-                        "charge" : 2.0
-                        }
+                "cost" : "1000"
             }
   },
   {
@@ -52,18 +42,13 @@
     "size" : 2.2,
     "req"  : "1100",
     "dmg"  : [20,22],
-    "skill":{
-                "st" : 1,
-                "type": { "size" : 4, "types" :["1","2","3","7"] },
-                "scale_procent" :[0.05, 0.1],
-                "scale_attribute" :[0,1],
-                "cost" : "1000",
-                "charge" : 1.5,
-                "s_charge" : {
-                        "cost":[3,0,0,0],
-                        "charge" : 2.0
-                        }
-            }
+            "skill":{
+                        "type" : 1,
+                        "abil": { "size" : 5, "types" :["1","2","3","4","5"] },
+                        "scale_procent" :[0.05, 0.1],
+                        "scale_attribute" :[1,0],
+                        "cost" : "1000"
+                    }
   }
   ]
 }

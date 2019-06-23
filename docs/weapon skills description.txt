@@ -5,12 +5,7 @@ Skills list and description
 	1.2 Scaling Hit
 	1.3 Scaling Hit with choise
 	1.4 Scaling Hit with 2 params
-	1.5 Charged Hit
-	1.6 Super Charged Hit
-	1.7 Cleave Hit
-
-
-Charged it is give additional spell with all ability as a normal, and it is also about super charged.
+	1.5 Cleave Hit
 
 
 

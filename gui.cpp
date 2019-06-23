@@ -90,8 +90,8 @@ void Gui::updateSkillInfo(Skill * skill)
 
     while( skill != nullptr)
     {
-        skillTabWidget->addTab(new SkillInfoWidget(skillTabWidget,skill->getName(), skill->getDesc() +
-                                                   "\n"+ skill->getCostStr() ), QString("Skill"+QString::number(counter+1)));
+        skillTabWidget->addTab(new SkillInfoWidget(skillTabWidget, skill->getDesc() +
+                                                   "\n"+ skill->getCostStr() ), skill->getName());
         counter++;
         skill = skill->getBinded();
     }

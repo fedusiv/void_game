@@ -18,15 +18,10 @@
 class SkillInfoWidget : public QWidget
 {
       public:
-      SkillInfoWidget(QWidget * parent, QString name, QString desc) : QWidget(parent)
+      SkillInfoWidget(QWidget * parent,  QString desc) : QWidget(parent)
       {
-           QLabel * n = new QLabel(this);
-           n->setGeometry(0,0,140,20);
-           n->setText(name);
-           n->setWordWrap(true);
-
            QLabel * d = new QLabel(this);
-           d->setGeometry(0,20,140,190);
+           d->setGeometry(0,0,140,210);
            d->setText(desc);
            d->setWordWrap(true);
            d->setAlignment( Qt::AlignLeft | Qt::AlignTop );

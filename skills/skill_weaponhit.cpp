@@ -1,24 +1,10 @@
 #include "skill_weaponhit.h"
-
-// init for simple or cleave attack
-SkillWeaponHit::SkillWeaponHit(QString name, QString desc, SkillTypes type, int id, QString cost, QVector<Skill_WeaponHitTypes> skill_wht) :
-    Skill (name, desc, type, id, cost),
-    _Scaling_procent(0), _Charge_procent(0), _Scaling(false), _Charged(false) , _ScalingOr(false), _ScalingTwo(false)
-{
-    for ( auto t : skill_wht)
-    {
-        if ( t == Skill_WeaponHitTypes::Cleave) _Cleave = true;
-    }
-}
-
-
 // init for all types
-SkillWeaponHit::SkillWeaponHit(QString name, QString desc, SkillTypes type, int id, QString cost,
-                     QVector<Skill_WeaponHitTypes> skill_wht, float scaling_procent,
-                     float charge_procent, int *scale_attributes, QString s_charge_cost, float s_charge_procent) :
-    Skill (name, desc, type, id, cost),
-    _Scaling_procent(scaling_procent), _Charge_procent(charge_procent), _SuperCharge_procent(s_charge_procent),
-    _Scaling(false), _Charged(false),  _ScalingOr(false), _ScalingTwo(false)
+SkillWeaponHit::SkillWeaponHit(QString desc, int id, QString cost,
+                     QVector<Skill_WeaponHitTypes> skill_wht, float scaling_procent, int *scale_attributes) :
+    Skill ("Hit", desc, SkillTypes::WeaponHit, id, cost),
+    _Scaling_procent(scaling_procent),
+    _Scaling(false), _ScalingOr(false), _ScalingTwo(false)
 {
     // write information about scaling attributes
     _Scale_attributes[0] = *scale_attributes++;
@@ -28,8 +14,6 @@ SkillWeaponHit::SkillWeaponHit(QString name, QString desc, SkillTypes type, int 
     for ( auto t : skill_wht)
     {
         if ( t == Skill_WeaponHitTypes::Cleave) _Cleave = true;
-        if ( t == Skill_WeaponHitTypes::Charged) _Charged = true;
-        if ( t == Skill_WeaponHitTypes::SuperCharged) _SuperCharged = true;
         if ( t == Skill_WeaponHitTypes::Scaling) _Scaling = true;
         if ( t == Skill_WeaponHitTypes::ScalingOr) _ScalingOr = true;
         if ( t == Skill_WeaponHitTypes::ScalingTwo) _ScalingTwo = true;
@@ -39,43 +23,6 @@ SkillWeaponHit::SkillWeaponHit(QString name, QString desc, SkillTypes type, int 
 
 
 }
-
-// init for simple or cleave with scale
-SkillWeaponHit::SkillWeaponHit(QString name, QString desc, SkillTypes type, int id, QString cost,
-                     QVector<Skill_WeaponHitTypes> skill_wht, float scaling_procent, int *scale_attributes) :
-       Skill (name, desc, type, id, cost),
-       _Scaling_procent(scaling_procent), _Charge_procent(0), _Scaling(false), _Charged(false),  _ScalingOr(false), _ScalingTwo(false)
-{
-    _Scale_attributes[0] = *scale_attributes++;
-    _Scale_attributes[1] = *scale_attributes;
-    for ( auto t : skill_wht)
-    {
-        if ( t == Skill_WeaponHitTypes::Cleave) _Cleave = true;
-        if ( t == Skill_WeaponHitTypes::Scaling) _Scaling = true;
-        if ( t == Skill_WeaponHitTypes::ScalingOr) _ScalingOr = true;
-        if ( t == Skill_WeaponHitTypes::ScalingTwo) _ScalingTwo = true;
-    }
-
-    addDescriptionAboutScaling();
-
-}
-// init for simple pr cleave with charged
-SkillWeaponHit::SkillWeaponHit(QString name, QString desc, SkillTypes type, int id, QString cost, QVector<Skill_WeaponHitTypes> skill_wht,
-                     float charge_procent, QString s_charge_cost, float s_charge_procent):
-    Skill (name, desc, type, id, cost),
-    _Scaling_procent(0), _Charge_procent(charge_procent), _Scaling(false), _Charged(false),  _ScalingOr(false), _ScalingTwo(false), _SuperCharge_procent(s_charge_procent)
-{
-    for ( auto t : skill_wht)
-    {
-        if ( t == Skill_WeaponHitTypes::Cleave) _Cleave = true;
-        if ( t == Skill_WeaponHitTypes::Charged) _Charged = true;
-        if ( t == Skill_WeaponHitTypes::SuperCharged) _SuperCharged = true;
-    }
-
-}
-
-
-
 
 /*
  * add description about scaling hit in weapon
@@ -110,11 +57,7 @@ void SkillWeaponHit::addDescriptionAboutScaling()
         case 0 :
         at = "Str";
         break;
-        case 1 :void SkillWeaponHit::bindFromCharge()
-            {
-
-            }
-
+        case 1 :
         at = "Agil";
         break;
         case 2 :
