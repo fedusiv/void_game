@@ -46,7 +46,7 @@ void SkillWeaponHit::addDescriptionAboutScaling()
         at = "Vital";
         break;
         }
-        _Desc.append( "\nDmg + " + QString::number(static_cast<double>(_Scaling_procent)) + " * " + at);
+        _Desc.append( "Dmg + " + QString::number(static_cast<double>(_Scaling_procent)) + " * " + at);
     }
 
     if (_ScalingOr || _ScalingTwo)
@@ -82,10 +82,10 @@ void SkillWeaponHit::addDescriptionAboutScaling()
         break;
         }
         if( _ScalingOr)
-        _Desc.append( "\nDmg + " + QString::number(static_cast<double>(_Scaling_procent)) + " * " + at +
+        _Desc.append( "Dmg + " + QString::number(static_cast<double>(_Scaling_procent)) + " * " + at +
                       " / " +  QString::number(static_cast<double>(_Scaling_procent)) + " * " + at1);
         if( _ScalingTwo)
-        _Desc.append( "\nDmg + " + QString::number(static_cast<double>(_Scaling_procent)) + " * " + at +
+        _Desc.append( "Dmg + " + QString::number(static_cast<double>(_Scaling_procent)) + " * " + at +
                       " + " +  QString::number(static_cast<double>(_Scaling_procent)) + " * " + at1);
     }
 }

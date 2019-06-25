@@ -13,7 +13,7 @@ public:
     // send current level of player
     int getLevel();
 
-    int Health(){return _Health;}
+    float Health(){return _Health;}
 
 
 private:
@@ -25,8 +25,8 @@ private:
 
     int _Level;
 
-    int _Health_max; // maximum health
-    int _Health;     // current Player's Health
+    float _Health_max; // maximum health
+    float _Health;     // current Player's Health
 
     // array of pointers to main 4 params, to easily send to another objects
     int * _statsArray[4];

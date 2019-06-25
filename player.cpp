@@ -27,7 +27,7 @@ int Player::getPlayerLevel()
     return Stats->getLevel();
 }
 
-int Player::getPlayerCurrentHealth()
+float Player::getPlayerCurrentHealth()
 {
     return Stats->Health();
 }

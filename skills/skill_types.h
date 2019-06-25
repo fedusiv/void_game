@@ -14,8 +14,6 @@ enum Skill_WeaponHitTypes
     Scaling,
     ScalingOr,
     ScalingTwo,
-    Charged,
-    SuperCharged,
     Cleave
 };
 

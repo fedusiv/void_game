@@ -22,13 +22,12 @@ void GameManager::connectInit()
 
 void GameManager::startGame()
 {
-    qDebug() << " starting Game ";
     // create Player
     player = new Player();
     // prepare gui for Game start
     gui->startGame();
     // updating on gui player information
-    gui->updateFullPlayerInfo(player->getPlayerStats(), player->getPlayerLevel(),
+    gui->updatePlayerInfo(player->getPlayerStats(), player->getPlayerLevel(),
                               player->getPlayerRaceName(), player->getPlayerClassName(),
                               player->getPlayerStep(), player->getPlayerCurrentHealth()) ;
     // updating on gui player inventory information;

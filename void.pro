@@ -31,6 +31,9 @@ SOURCES += \
         equip/weapon.cpp \
         gamemanager.cpp \
         gui.cpp \
+        gui/mainwindow.cpp \
+        gui/playerinventorywidget.cpp \
+        gui/playerstatswidget.cpp \
         json_reader.cpp \
         main.cpp \
         player/paramscounting.cpp \
@@ -51,6 +54,9 @@ HEADERS += \
     equip/weapon.h \
     gamemanager.h \
     gui.h \
+    gui/mainwindow.h \
+    gui/playerinventorywidget.h \
+    gui/playerstatswidget.h \
     json_reader.h \
     player/paramscounting.h \
     player.h \
