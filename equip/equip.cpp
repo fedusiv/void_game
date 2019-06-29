@@ -91,7 +91,7 @@ EquipReturnCode Equip::checkRequirments(int player_level, int **type_points)
     if ( player_level <  _Level )
         return EquipReturnCode::LEVEL_ERROR; // not enough level
 
-    for ( int i = 0; i < 4; i++)
+    for ( int i = 0; i < AMOUNT_OF_MAIN_STATS; i++)
     {
         if( *(type_points[i]) < _RequiredPoints[i] ) return EquipReturnCode::POINTS_ERROR;
     }

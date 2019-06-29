@@ -1,0 +1,8 @@
+1. Make connect directly  gui and player inside GM
+2. Make players stats fur gui
+3. Create list of start equip and change calls of it
+4. Make sure with players stats pass to another objects
+5. Change a big amount of pass parameters in creating objects to a some structs
+6. Change reading file to QMap
+7. Change logic of storing info about weapon hit types to vector with bool values of all types
+8. Task Manager

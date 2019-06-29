@@ -58,6 +58,7 @@ public:
     virtual QString getStringType() { return "Equip";}                          // virtual method for printing that is it equipment
     virtual float getDamage(){return 0.0;}                    // virtual method for weapon children, it return damage parametr
     virtual float getArmor(){return 0.0;}                    // virtual method for cloth children, returns armor of cloth
+
 protected:
     int _Level;     // level of equipment
     QString _Name;  // name of equipment
