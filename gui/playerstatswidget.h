@@ -11,7 +11,7 @@ class PlayerStatsWidget : public QWidget
     Q_OBJECT
 public:
     PlayerStatsWidget(QWidget * parent);
-    void updatePlayerInfo(int ** stats, int level,  QString raceName, QString className, int step, float health);
+    void updatePlayerInfo(int ** stats, int level,  QString raceName, int step, float health, float energy);
 
 private:
     void initUI();      // init ui
@@ -26,17 +26,14 @@ private:
     QLabel * label_strength;
     QLabel * label_agility_c;
     QLabel * label_agility;
-    QLabel * label_energy_c;
-    QLabel * label_energy;
-    QLabel * label_vitality_c;
-    QLabel * label_vitality;
+    QLabel * label_intelligence_c;
+    QLabel * label_intelligence;
     QLabel * label_step_c;
     QLabel * label_step;
     QLabel * label_race_c;
     QLabel * label_race;
-    QLabel * label_class_c;
-    QLabel * label_class;
     QProgressBar * healthBar;
+    QProgressBar * energyBar;
 };
 
 #endif // PLAYERSTATSWIDGET_H

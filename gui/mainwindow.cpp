@@ -19,9 +19,9 @@ void MainWindow::startGame()
 
 }
 
-void MainWindow::updatePlayerInfo(int **stats, int level, QString raceName, QString className, int step, float health)
+void MainWindow::updatePlayerInfo(int **stats, int level, QString raceName, int step, float health, float energy)
 {
-    playerStatsWidget->updatePlayerInfo(stats,level,raceName,className,step,health);
+    playerStatsWidget->updatePlayerInfo(stats,level,raceName,step,health,energy);
 }
 
 void MainWindow::updateInventoryInfo(inventoryStatus *status)

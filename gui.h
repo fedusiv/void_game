@@ -38,7 +38,7 @@ class Gui : public QWidget
 public:
     explicit Gui(QWidget *parent = nullptr);
     // update full player information
-    void updatePlayerInfo(int ** stats, int level,  QString raceName, QString className, int step, float health);
+    void updatePlayerInfo(int ** stats, int level,  QString raceName,  int step, float health, float energy);
     // update health
     void updateHealths(int health);
     //update inventory size status

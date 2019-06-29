@@ -18,7 +18,7 @@ class MainWindow : public QWidget
 public:
    explicit  MainWindow(QWidget * parent = nullptr);
     void startGame();   // do all stuff do be ready for game UI
-    void updatePlayerInfo(int ** stats, int level,  QString raceName, QString className, int step, float health);
+    void updatePlayerInfo(int ** stats, int level,  QString raceName, int step, float health, float energy);
     void updateInventoryInfo(inventoryStatus * status);
     void updateInventoryElementInfo(QSharedPointer<EquipStatus> equip);
 signals:

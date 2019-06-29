@@ -28,8 +28,9 @@ void GameManager::startGame()
     gui->startGame();
     // updating on gui player information
     gui->updatePlayerInfo(player->getPlayerStats(), player->getPlayerLevel(),
-                              player->getPlayerRaceName(), player->getPlayerClassName(),
-                              player->getPlayerStep(), player->getPlayerCurrentHealth()) ;
+                              player->getPlayerRaceName(),
+                              player->getPlayerStep(), player->getPlayerCurrentHealth(),
+                          player->getPlayerCurrentEnergy()) ;
     // updating on gui player inventory information;
     gui->updateInventory(player->getInventory());
 

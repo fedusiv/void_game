@@ -57,7 +57,10 @@ Skill * SkillFactory::createWeaponHit(QJsonObject obj)
         }
 
     }
-    QString cost = obj["cost"].toString();
+    int cost_array[2];
+    cost_array[0] = obj["cost"].toArray().at(0).toInt();
+    cost_array[1] = obj["cost"].toArray().at(1).toInt();
 
-    return new SkillWeaponHit(desc,id,cost,swht,scaling_procent,scaling_array);
+
+    return new SkillWeaponHit(desc,id,cost_array,swht,scaling_procent,scaling_array);
 }

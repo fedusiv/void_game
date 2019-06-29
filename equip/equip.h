@@ -5,6 +5,8 @@
 #include <QDebug>
 #include "returncodes.h"
 #include "skills/skill.h"
+
+#define AMOUNT_OF_MAIN_STATS 3
 /*
  * Types of all equipments
  */
@@ -63,7 +65,7 @@ protected:
     QString _Desc;  // lore description of equip
     QString _Info;  // some information about equipment
     bool _Equipped;  // flag shows is equipment equipped
-    int _RequiredPoints[4]; // array that represent requirmet points of 4 types ( str, agil, energy, vital)
+    int _RequiredPoints[3]; // array that represent requirmet points of 3 types ( str, agil, intelligence)
 
     EquipType  _Type;// type of equipment
 

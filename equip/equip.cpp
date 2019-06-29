@@ -3,14 +3,14 @@
 Equip::Equip(int level) :  _Level(level), _Name("nameless"), _Size(1.0), _Equipped(false)
 {
     // set required points to zero
-    for ( int i = 0; i < 4; i++) _RequiredPoints[i] = 0 ;
+    for ( int i = 0; i < AMOUNT_OF_MAIN_STATS; i++) _RequiredPoints[i] = 0 ;
     _Skill = nullptr;
 }
 
 Equip::Equip(QString name) : _Name(name), _Size(1.0), _Equipped(false)
 {
     // set required points to zero
-    for ( int i = 0; i < 4; i++) _RequiredPoints[i] = 0 ;
+    for ( int i = 0; i < AMOUNT_OF_MAIN_STATS; i++) _RequiredPoints[i] = 0 ;
     _Skill = nullptr;
 }
 
@@ -20,7 +20,7 @@ Equip::Equip(QString name, QString desc, QString req, int level, EquipType type,
     _Equipped(false), _Type(type)
 {
     // convert qsrting requirments type note to int array
-    for ( int i = 0; i < 4; i++)
+    for ( int i = 0; i < AMOUNT_OF_MAIN_STATS; i++)
     {
         _RequiredPoints[i] = req.at(i).unicode() - 0x30;    // 0x30 '0' symbol in ascii
     }
@@ -34,7 +34,7 @@ Equip::Equip(QString name, QString desc, QString req, int level, EquipType type,
     _Equipped(false), _Type(type), _Skill(skill)
 {
     // convert qsrting requirments type note to int array
-    for ( int i = 0; i < 4; i++)
+    for ( int i = 0; i < AMOUNT_OF_MAIN_STATS; i++)
     {
         _RequiredPoints[i] = req.at(i).unicode() - 0x30;    // 0x30 '0' symbol in ascii
     }

@@ -20,6 +20,7 @@ public:
     int ** getPlayerStats();
     int getPlayerLevel();
     float getPlayerCurrentHealth();
+    float getPlayerCurrentEnergy();
     QString getPlayerRaceName();
     QString getPlayerClassName();
     int getPlayerStep();

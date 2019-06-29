@@ -1,6 +1,6 @@
 #include "skill_weaponhit.h"
 // init for all types
-SkillWeaponHit::SkillWeaponHit(QString desc, int id, QString cost,
+SkillWeaponHit::SkillWeaponHit(QString desc, int id, int *cost,
                      QVector<Skill_WeaponHitTypes> skill_wht, float scaling_procent, int *scale_attributes) :
     Skill ("Hit", desc, SkillTypes::WeaponHit, id, cost),
     _Scaling_procent(scaling_procent),
@@ -20,7 +20,7 @@ SkillWeaponHit::SkillWeaponHit(QString desc, int id, QString cost,
     }
 
     addDescriptionAboutScaling();
-
+    _Desc.append("\nCost : " + _CostStr);
 
 }
 

@@ -7,7 +7,7 @@
 class Skill
 {
 public:
-    Skill(QString name, QString desc, SkillTypes type, int id, QString cost);
+    Skill(QString name, QString desc, SkillTypes type, int id, int * cost);
     Skill * getBinded();    // return skill, that binded with this skill
     QString getName(){return _Name;}
     QString getDesc(){return _Desc;}
@@ -18,7 +18,7 @@ protected:
     QString _CostStr;   // Cost in string type for gui
     SkillTypes _Type;   // type of skill
     int _Id;            // id in game for skill, each skill has own id
-    int _Cost[4];          // cost of spell, written like for parameters value's
+    int _Cost[2];          // cost of spell, written like for parameters value's
     Skill * _Binded;     // pointer to binded skills
 };
 

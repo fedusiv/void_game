@@ -7,29 +7,32 @@ class PlayerStats
 {
 public:
     // Main constructor
-    PlayerStats(int str = 1, int agil = 1, int ener = 1, int vital = 1);
+    PlayerStats();
     // send array of pointers to main 4 params
     int **  getStats();
     // send current level of player
     int getLevel();
 
     float Health(){return _Health;}
+    float Energy(){return _Energy;}
 
 
 private:
-    // Main 4 parameters, that influence to other stuff
+    // Main 3 parameters, that influence to other stuff
     int _Strength;
     int _Agility;
-    int _Energy;
-    int _Vitality;
+    int _Intelligence;
 
     int _Level;
 
     float _Health_max; // maximum health
     float _Health;     // current Player's Health
 
-    // array of pointers to main 4 params, to easily send to another objects
-    int * _statsArray[4];
+    float _Energy_max;// maxium energy points
+    float _Energy;    //currenrt Player's Energy
+
+    // array of pointers to main 3 params, to easily send to another objects
+    int * _statsArray[3];
 };
 
 #endif // PLAYERSTATS_H

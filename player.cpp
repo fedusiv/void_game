@@ -32,6 +32,11 @@ float Player::getPlayerCurrentHealth()
     return Stats->Health();
 }
 
+float Player::getPlayerCurrentEnergy()
+{
+    return Stats->Energy();
+}
+
 QString Player::getPlayerRaceName()
 {
     return Race->getName();

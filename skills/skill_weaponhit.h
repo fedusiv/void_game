@@ -9,7 +9,7 @@ class SkillWeaponHit : public Skill
 {
 public:
     // init for all types
-    SkillWeaponHit(QString desc,  int id, QString cost,
+    SkillWeaponHit(QString desc,  int id, int * cost,
               QVector<Skill_WeaponHitTypes> skill_wht,
               float scaling_procent, int * scale_attributes);
 protected:

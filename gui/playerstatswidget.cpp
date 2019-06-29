@@ -5,21 +5,23 @@ PlayerStatsWidget::PlayerStatsWidget(QWidget *parent) : QWidget (parent)
     initUI();
 }
 
-void PlayerStatsWidget::updatePlayerInfo(int **stats, int level, QString raceName, QString className, int step, float health)
+void PlayerStatsWidget::updatePlayerInfo(int **stats, int level, QString raceName, int step, float health, float energy)
 {
     label_strength->setText(QString::number(*(stats[0])));
     label_agility->setText(QString::number(*(stats[1])));
-    label_energy->setText(QString::number(*(stats[2])));
-    label_vitality->setText(QString::number(*(stats[3])));
+    label_intelligence->setText(QString::number(*(stats[2])));
 
     label_level->setText(QString::number(level));
     label_step->setText(QString::number(step));
 
     label_race->setText(raceName);
-    label_class->setText(className);
 
     healthBar->setMaximum(static_cast<int>(health));
     healthBar->setValue(static_cast<int>(health));
+
+    energyBar->setMaximum(static_cast<int>(energy));
+    energyBar->setValue(static_cast<int>(energy));
+
 }
 
 
@@ -43,7 +45,7 @@ void PlayerStatsWidget::initUI()
     label_level = new QLabel(this);
     label_level->setGeometry(QRect(QPoint(90, ilsp),ils));
 
-    ilsp+=ilsp_s;
+    ilsp+=1.5*ilsp_s;
     label_strength_c = new QLabel("Strength",this);
     label_strength_c->setGeometry(QRect(QPoint(20, ilsp),ils_c));
     label_strength = new QLabel(this);
@@ -56,16 +58,10 @@ void PlayerStatsWidget::initUI()
     label_agility->setGeometry(QRect(QPoint(90, ilsp),ils));
 
     ilsp+=ilsp_s;
-    label_energy_c = new QLabel("Energy",this);
-    label_energy_c->setGeometry(QRect(QPoint(20, ilsp),ils_c));
-    label_energy = new QLabel(this);
-    label_energy->setGeometry(QRect(QPoint(90, ilsp),ils));
-
-    ilsp+=ilsp_s;
-    label_vitality_c = new QLabel("Vitality",this);
-    label_vitality_c->setGeometry(QRect(QPoint(20, ilsp),ils_c));
-    label_vitality = new QLabel(this);
-    label_vitality->setGeometry(QRect(QPoint(90, ilsp),ils));
+    label_intelligence_c = new QLabel("Energy",this);
+    label_intelligence_c->setGeometry(QRect(QPoint(20, ilsp),ils_c));
+    label_intelligence = new QLabel(this);
+    label_intelligence->setGeometry(QRect(QPoint(90, ilsp),ils));
 
     ilsp+=1.5 * ilsp_s;
     label_race_c = new QLabel("Race",this);
@@ -73,14 +69,25 @@ void PlayerStatsWidget::initUI()
     label_race = new QLabel(this);
     label_race->setGeometry(QRect(QPoint(80, ilsp),ils_c));
 
-    ilsp+=ilsp_s;
-    label_class_c = new QLabel("Class",this);
-    label_class_c->setGeometry(QRect(QPoint(20, ilsp),ils_c));
-    label_class = new QLabel(this);
-    label_class->setGeometry(QRect(QPoint(80, ilsp),ils_c));
-
     ilsp+=1.5 * ilsp_s;
     healthBar = new QProgressBar(this);
     healthBar->setGeometry(QRect(QPoint(20, ilsp),QSize(110,20)));
     healthBar->setFormat("%v");
+    healthBar->setStyleSheet("QProgressBar {text-align: center;\
+                              border: 0px}\
+                             QProgressBar::chunk {\
+                             background-color: #f23737;\
+                             border: 2px solid grey; \
+                             border-radius: 10px; }");
+
+    ilsp+=1.5 * ilsp_s;
+    energyBar = new QProgressBar(this);
+    energyBar->setGeometry(QRect(QPoint(20, ilsp),QSize(110,20)));
+    energyBar->setFormat("%v");
+    energyBar->setStyleSheet("QProgressBar {text-align: center;\
+                              border: 0px}\
+                             QProgressBar::chunk {\
+                             background-color: #378bf1;\
+                             border: 2px solid grey; \
+                             border-radius: 10px; }");
 }
