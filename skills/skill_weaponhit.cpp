@@ -1,23 +1,15 @@
 #include "skill_weaponhit.h"
 // init for all types
 SkillWeaponHit::SkillWeaponHit(QString desc, int id, int *cost,
-                     QVector<Skill_WeaponHitTypes> skill_wht, float scaling_procent, int *scale_attributes) :
+                     bool *skill_wht, float scaling_procent, int *scale_attributes) :
     Skill ("Hit", desc, SkillTypes::WeaponHit, id, cost),
-    _Scaling_procent(scaling_procent),
-    _Scaling(false), _ScalingOr(false), _ScalingTwo(false)
+    _Scaling_procent(scaling_procent)
 {
     // write information about scaling attributes
     _Scale_attributes[0] = *scale_attributes++;
     _Scale_attributes[1] = *scale_attributes;
-
-    // fill flags
-    for ( auto t : skill_wht)
-    {
-        if ( t == Skill_WeaponHitTypes::Cleave) _Cleave = true;
-        if ( t == Skill_WeaponHitTypes::Scaling) _Scaling = true;
-        if ( t == Skill_WeaponHitTypes::ScalingOr) _ScalingOr = true;
-        if ( t == Skill_WeaponHitTypes::ScalingTwo) _ScalingTwo = true;
-    }
+    // copy data to array, now in array we now that types are inside
+    memcpy(_Skill_Types, skill_wht, Skill_WeaponHitTypes::Count);
 
     addDescriptionAboutScaling();
     _Desc.append("\nCost : " + _CostStr);
@@ -29,7 +21,7 @@ SkillWeaponHit::SkillWeaponHit(QString desc, int id, int *cost,
  */
 void SkillWeaponHit::addDescriptionAboutScaling()
 {
-    if (_Scaling)
+    if ( _Skill_Types[Skill_WeaponHitTypes::Scaling] )
     {
         QString at;
         switch (_Scale_attributes[0] ) {
@@ -49,7 +41,7 @@ void SkillWeaponHit::addDescriptionAboutScaling()
         _Desc.append( "Dmg + " + QString::number(static_cast<double>(_Scaling_procent)) + " * " + at);
     }
 
-    if (_ScalingOr || _ScalingTwo)
+    if (_Skill_Types[Skill_WeaponHitTypes::ScalingTwo] || _Skill_Types[Skill_WeaponHitTypes::ScalingOr])
     {
         QString at;
         QString at1;
@@ -81,10 +73,10 @@ void SkillWeaponHit::addDescriptionAboutScaling()
         at1 = "Vital";
         break;
         }
-        if( _ScalingOr)
+        if( _Skill_Types[Skill_WeaponHitTypes::ScalingOr])
         _Desc.append( "Dmg + " + QString::number(static_cast<double>(_Scaling_procent)) + " * " + at +
                       " / " +  QString::number(static_cast<double>(_Scaling_procent)) + " * " + at1);
-        if( _ScalingTwo)
+        if( _Skill_Types[Skill_WeaponHitTypes::ScalingTwo])
         _Desc.append( "Dmg + " + QString::number(static_cast<double>(_Scaling_procent)) + " * " + at +
                       " + " +  QString::number(static_cast<double>(_Scaling_procent)) + " * " + at1);
     }

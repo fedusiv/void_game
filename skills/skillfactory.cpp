@@ -35,26 +35,23 @@ Skill * SkillFactory::createWeaponHit(QJsonObject obj)
     // read and parse string of weapon hit skill type
     QString type = obj["abil"].toObject()["types"].toArray().at(abil_num).toString();
     // QVector of all weapon hit abilities
-    QVector<Skill_WeaponHitTypes>  swht;    // skill weapon hits types, vector stores data about that ability is on weapon skill
+    bool swht[Skill_WeaponHitTypes::Count];    // skill weapon hits types, array stores data about that ability is on weapon skill
+    memset(swht, false, Skill_WeaponHitTypes::Count);
     QString desc;       // description of the skill
     float scaling_procent = 0;
     int scaling_array[2]; // it is array for scaling ability in skill
-    int id = _Id++;         // set id of spell and also increase the main id counter for all spells
+    int id = _Id++;         // set id of spell and also increase the main id counter for all spells 
     for ( int i = 0; i < type.size(); i++)
     {
-        Skill_WeaponHitTypes abil = static_cast<Skill_WeaponHitTypes>( type.at(i).unicode() - 0x30);
-        swht.append(  abil );
-        QStringList list = JsonReader::getInstance()->skillWeaponHitsDescRead(abil - 1);
+        Skill_WeaponHitTypes abil_num = static_cast<Skill_WeaponHitTypes>( type.at(i).unicode() - 0x30);
+        swht[abil_num] = true;
+        QStringList list = JsonReader::getInstance()->skillWeaponHitsDescRead(abil_num);
         desc.append(list.at(0) + '\n');
 
 
-        // if have scaling ability set parametrs of it
-        if ( abil == Skill_WeaponHitTypes::Scaling ||  abil == Skill_WeaponHitTypes::ScalingOr || abil == Skill_WeaponHitTypes::ScalingTwo )
-        {
-            scaling_procent = ParamsCounting::skillWeaponCalculateScalingProcent(obj["scale_procent"].toArray()[0].toDouble(), obj["scale_procent"].toArray()[1].toDouble() );
-            scaling_array[0] = obj["scale_attribute"].toArray()[0].toInt();
-            scaling_array[1] = obj["scale_attribute"].toArray()[1].toInt();
-        }
+        scaling_procent = ParamsCounting::skillWeaponCalculateScalingProcent(obj["scale_procent"].toArray()[0].toDouble(), obj["scale_procent"].toArray()[1].toDouble() );
+        scaling_array[0] = obj["scale_attribute"].toArray()[0].toInt();
+        scaling_array[1] = obj["scale_attribute"].toArray()[1].toInt();
 
     }
     int cost_array[2];

@@ -10,11 +10,12 @@ enum SkillTypes
 
 enum Skill_WeaponHitTypes
 {
-    Simple = 1,
+    Simple = 0,
     Scaling,
     ScalingOr,
     ScalingTwo,
-    Cleave
+    Cleave,
+    Count
 };
 
 #endif // SKILL_TYPES_H

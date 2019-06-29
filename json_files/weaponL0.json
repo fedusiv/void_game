@@ -12,7 +12,7 @@
     "dmg"  : [13,17],
             "skill":{
                         "type" : 1,
-                        "abil": { "size" : 5, "types" :["1","2","3","4","5"] },
+                        "abil": { "size" : 5, "types" :["0","1","2","3","4"] },
                         "scale_procent" :[0.05, 0.1],
                         "scale_attribute" :[1,0],
                         "cost" : [0,0]
@@ -28,7 +28,7 @@
     "dmg"  : [12,15],
     "skill":{
                 "type" : 1,
-                "abil": { "size" : 5, "types" :["1","2","3","4","5"] },
+                "abil": { "size" : 5, "types" :["0","1","2","3","4"] },
                 "scale_procent" :[0.05, 0.1],
                 "scale_attribute" :[1,0],
                 "cost" : [0,0]
@@ -44,7 +44,7 @@
     "dmg"  : [20,22],
             "skill":{
                         "type" : 1,
-                        "abil": { "size" : 5, "types" :["1","2","3","4","5"] },
+                        "abil": { "size" : 5, "types" :["0","1","2","3","4"] },
                         "scale_procent" :[0.05, 0.1],
                         "scale_attribute" :[1,0],
                         "cost" : [0,0]
