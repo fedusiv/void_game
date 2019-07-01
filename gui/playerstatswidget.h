@@ -5,13 +5,14 @@
 #include <QWidget>
 #include <QLabel>
 #include <QProgressBar>
+#include "common_types.h"
 
 class PlayerStatsWidget : public QWidget
 {
     Q_OBJECT
 public:
     PlayerStatsWidget(QWidget * parent);
-    void updatePlayerInfo(int ** stats, int level,  QString raceName, int step, float health, float energy);
+    void updatePlayerInfo(MainPlayerStats *stats, int level,  QString raceName, int step, float health, float energy);
 
 private:
     void initUI();      // init ui

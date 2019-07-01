@@ -6,11 +6,8 @@
 class Weapon : public Equip
 {
 public:
-    Weapon(int level);
-    Weapon(QString name);
-    Weapon(QString name, int level);
-    Weapon(QString name, int level, QString desc, int hands, float size, QString req, float dmg);
-    Weapon(QString name, int level, QString desc, int hands, float size, QString req, float dmg, Skill * skill);
+    Weapon(QString name, int level, QString desc, int hands, float size, MainPlayerStats * req, float dmg);
+    Weapon(QString name, int level, QString desc, int hands, float size, MainPlayerStats * req, float dmg, Skill * skill);
     ~Weapon() override;
 
     int getHands() override { return _Hands;}

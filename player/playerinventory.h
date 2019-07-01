@@ -41,7 +41,7 @@ class EquipStatus{
     bool equiped;   // flag shows is it equipped
     // special
     float damage;
-    int *require;
+    MainPlayerStats *require;
     float armor;
     Skill * skill;
 };
@@ -75,7 +75,7 @@ public:
     // returns all info about choosen equip
     QSharedPointer<EquipStatus>  getEquipmentInfo(int id);
     // equip inventory element or disequip
-    EquipReturnCode equipEquipmentElement(int player_level, int ** type_array, int id);
+    EquipReturnCode equipEquipmentElement(int player_level, MainPlayerStats * type_array, int id);
     // remove equipment from inventory
     void removeFromInventory( int id );
 

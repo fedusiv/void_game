@@ -87,7 +87,7 @@ void PlayerInventory::removeFromInventory(int id )
  * @param: array of types, to check if all requirments will be done
  * @return: code of method execution status
  */
-EquipReturnCode PlayerInventory::equipEquipmentElement(int player_level, int **type_array, int id)
+EquipReturnCode PlayerInventory::equipEquipmentElement(int player_level, MainPlayerStats *type_array, int id)
 {
     EquipReturnCode err = EquipReturnCode::SUCCESS;
 

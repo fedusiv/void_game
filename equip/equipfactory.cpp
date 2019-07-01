@@ -16,16 +16,25 @@ Equip * EquipFactory::createWeapon(int level)
     Skill * s = SkillFactory::getInstance()->createSkill(skill);
     array = obj["dmg"].toArray();
     float dmg = ParamsCounting::weaponCalculateDamage( array.at(0).toDouble() , array.at(1).toDouble());
+    // set requirments points for equipment
+    QJsonArray requir_array = obj["req"].toArray();
+    int * req = new int(requir_array.size());
+    for ( int i = 0; i < requir_array.size(); i++ )
+    {
+        *(req + i) = requir_array.at(i).toInt();
+    }
+    MainPlayerStats * m_req = new MainPlayerStats(req);
     return new Weapon(
                 obj["name"].toString(),
                 obj["level"].toInt(),
                 obj["desc"].toString(),
                 obj["hands"].toInt(),
                 static_cast<float>(obj["size"].toDouble()),
-                obj["req"].toString(),
+                m_req,
                 dmg,                    // weapon dmg
                 s                       // weapon skill
                 );
+
 
 }
 /*
@@ -46,14 +55,21 @@ Equip *EquipFactory::createCloth(EquipClothType type, int level)
     QJsonArray array = obj["cloth"].toArray();
     QJsonValue val = array.at(id);
     obj = val.toObject();
-
+    // set requirments points for equipment
+    QJsonArray requir_array = obj["req"].toArray();
+    int * req = new int(requir_array.size());
+    for ( int i = 0; i < requir_array.size(); i++ )
+    {
+        *(req + i) = requir_array.at(i).toInt();
+    }
+    MainPlayerStats * m_req = new MainPlayerStats(req);
     return new Cloth(
                 obj["name"].toString(),
                 obj["level"].toInt(),
                 obj["desc"].toString(),
                 static_cast<float>(obj["armor"].toDouble()),
                 static_cast<float>(obj["size"].toDouble()),
-                obj["req"].toString(),
+                m_req,
                 type
                 );
 

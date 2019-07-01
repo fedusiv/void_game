@@ -8,6 +8,7 @@
 #include "json_reader.h"
 #include "player/paramscounting.h"
 #include "skills/skillfactory.h"
+#include "common_types.h"
 /*
  *
  * Factory pattern class to create Equipment, this class communicate with other stuff

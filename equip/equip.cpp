@@ -1,43 +1,26 @@
 #include "equip.h"
 
-Equip::Equip(int level) :  _Level(level), _Name("nameless"), _Size(1.0), _Equipped(false)
-{
-    // set required points to zero
-    for ( int i = 0; i < AMOUNT_OF_MAIN_STATS; i++) _RequiredPoints[i] = 0 ;
-    _Skill = nullptr;
-}
-
-Equip::Equip(QString name) : _Name(name), _Size(1.0), _Equipped(false)
-{
-    // set required points to zero
-    for ( int i = 0; i < AMOUNT_OF_MAIN_STATS; i++) _RequiredPoints[i] = 0 ;
-    _Skill = nullptr;
-}
-
-Equip::Equip(QString name, QString desc, QString req, int level, EquipType type,  float size) :
+Equip::Equip(QString name, QString desc, MainPlayerStats * req, int level, EquipType type,  float size) :
     _Level(level), _Name(name),
     _Size(size), _Desc(desc),
-    _Equipped(false), _Type(type)
+    _Equipped(false), _RequiredPoints(req),
+    _Type(type)
 {
-    // convert qsrting requirments type note to int array
-    for ( int i = 0; i < AMOUNT_OF_MAIN_STATS; i++)
-    {
-        _RequiredPoints[i] = req.at(i).unicode() - 0x30;    // 0x30 '0' symbol in ascii
-    }
+
     _Skill = nullptr;
+    delete []  req;
 }
 
 // constructor with skill initilize
-Equip::Equip(QString name, QString desc, QString req, int level, EquipType type, Skill * skill,  float size) :
+Equip::Equip(QString name, QString desc, MainPlayerStats * req, int level, EquipType type, Skill * skill,  float size) :
     _Level(level), _Name(name),
     _Size(size), _Desc(desc),
-    _Equipped(false), _Type(type), _Skill(skill)
+    _Equipped(false), _RequiredPoints(req),
+    _Type(type), _Skill(skill)
+
 {
-    // convert qsrting requirments type note to int array
-    for ( int i = 0; i < AMOUNT_OF_MAIN_STATS; i++)
-    {
-        _RequiredPoints[i] = req.at(i).unicode() - 0x30;    // 0x30 '0' symbol in ascii
-    }
+
+    delete []  req;
 }
 
 int Equip::getLevel()
@@ -84,22 +67,25 @@ EquipType Equip::getEquipType()
 {
     return _Type;
 }
-
-EquipReturnCode Equip::checkRequirments(int player_level, int **type_points)
+/*
+ * desc : checking if player can equip this item
+ * @param : player_level
+ * @param : information about player's Main Stats
+ * @return : result code
+ */
+EquipReturnCode Equip::checkRequirments(int player_level, MainPlayerStats * type_points)
 {
     // equipment need to be equipped
     if ( player_level <  _Level )
         return EquipReturnCode::LEVEL_ERROR; // not enough level
 
-    for ( int i = 0; i < AMOUNT_OF_MAIN_STATS; i++)
-    {
-        if( *(type_points[i]) < _RequiredPoints[i] ) return EquipReturnCode::POINTS_ERROR;
-    }
+    if ( ! type_points->check(_RequiredPoints) )
+        return  EquipReturnCode::POINTS_ERROR;
 
     return EquipReturnCode::SUCCESS;
 }
 
-int * Equip::getRequirments()
+MainPlayerStats *Equip::getRequirments()
 {
     return _RequiredPoints;
 }

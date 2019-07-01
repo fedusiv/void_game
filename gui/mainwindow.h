@@ -10,6 +10,7 @@
 #include "playerstatswidget.h"
 #include "playerinventorywidget.h"
 #include "player/playerinventory.h"
+#include "common_types.h"
 
 class MainWindow : public QWidget
 {
@@ -18,7 +19,7 @@ class MainWindow : public QWidget
 public:
    explicit  MainWindow(QWidget * parent = nullptr);
     void startGame();   // do all stuff do be ready for game UI
-    void updatePlayerInfo(int ** stats, int level,  QString raceName, int step, float health, float energy);
+    void updatePlayerInfo(MainPlayerStats *stats, int level,  QString raceName, int step, float health, float energy);
     void updateInventoryInfo(inventoryStatus * status);
     void updateInventoryElementInfo(QSharedPointer<EquipStatus> equip);
 signals:

@@ -6,8 +6,8 @@
 class Cloth : public Equip
 {
 public:
-    Cloth(int level);
-    Cloth(QString name, int level, QString desc, float armor, float size, QString req, EquipClothType type);
+
+    Cloth(QString name, int level, QString desc, float armor, float size, MainPlayerStats * req, EquipClothType type);
     ~Cloth()override;
     // return current cloth equip type
     EquipClothType getClothType() override;

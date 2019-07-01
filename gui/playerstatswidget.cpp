@@ -5,11 +5,11 @@ PlayerStatsWidget::PlayerStatsWidget(QWidget *parent) : QWidget (parent)
     initUI();
 }
 
-void PlayerStatsWidget::updatePlayerInfo(int **stats, int level, QString raceName, int step, float health, float energy)
+void PlayerStatsWidget::updatePlayerInfo(MainPlayerStats *stats, int level, QString raceName, int step, float health, float energy)
 {
-    label_strength->setText(QString::number(*(stats[0])));
-    label_agility->setText(QString::number(*(stats[1])));
-    label_intelligence->setText(QString::number(*(stats[2])));
+    label_strength->setText(QString::number(stats->Strength));
+    label_agility->setText(QString::number(stats->Agility));
+    label_intelligence->setText(QString::number(stats->Intelligence));
 
     label_level->setText(QString::number(level));
     label_step->setText(QString::number(step));

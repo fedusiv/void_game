@@ -5,6 +5,7 @@
 #include <QDebug>
 #include "returncodes.h"
 #include "skills/skill.h"
+#include "common_types.h"
 
 #define AMOUNT_OF_MAIN_STATS 3
 /*
@@ -33,10 +34,8 @@ enum  EquipClothType{
 class Equip
 {
 public:
-    Equip(int level);
-    Equip(QString name);
-    Equip(QString name, QString desc, QString req,int level, EquipType type,  float size = 1 );
-    Equip(QString name, QString desc, QString req,int level, EquipType type,  Skill * skill, float size = 1 );
+    Equip(QString name, QString desc, MainPlayerStats * req,int level, EquipType type,  float size = 1 );
+    Equip(QString name, QString desc, MainPlayerStats * req,int level, EquipType type,  Skill * skill, float size = 1 );
     virtual ~Equip(){ qDebug() << "Equip deleted " + _Name; }
 
     int getLevel(); // returns equipment level
@@ -48,8 +47,8 @@ public:
     bool isEquipped();    // return flag of equipped status
     void setEquipped(bool status);  // set equipped or useless equip
     EquipType getEquipType();
-    EquipReturnCode checkRequirments( int player_level, int ** type_points);  // return true if player can equip this element
-    int * getRequirments();     // return pointer to array with requirments values for main stats
+    EquipReturnCode checkRequirments(int player_level, MainPlayerStats *type_points);  // return true if player can equip this element
+    MainPlayerStats * getRequirments();     // return pointer to array with requirments values for main stats
     Skill * getSkill();         // return pointer to skill of equip
 
     // virtual methods for children class
@@ -66,7 +65,7 @@ protected:
     QString _Desc;  // lore description of equip
     QString _Info;  // some information about equipment
     bool _Equipped;  // flag shows is equipment equipped
-    int _RequiredPoints[3]; // array that represent requirmet points of 3 types ( str, agil, intelligence)
+    MainPlayerStats * _RequiredPoints; // requirmet points of 3 types ( str, agil, intelligence)
 
     EquipType  _Type;// type of equipment
 

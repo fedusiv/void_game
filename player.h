@@ -7,6 +7,7 @@
 #include "player/playerinventory.h"
 #include "equip/equip.h"
 #include "returncodes.h"
+#include "common_types.h"
 
 #include <QDebug>
 
@@ -17,7 +18,7 @@ public:
     Player();
 
 
-    int ** getPlayerStats();
+    MainPlayerStats * getPlayerStats();
     int getPlayerLevel();
     float getPlayerCurrentHealth();
     float getPlayerCurrentEnergy();

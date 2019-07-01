@@ -19,7 +19,7 @@ void MainWindow::startGame()
 
 }
 
-void MainWindow::updatePlayerInfo(int **stats, int level, QString raceName, int step, float health, float energy)
+void MainWindow::updatePlayerInfo(MainPlayerStats *stats, int level, QString raceName, int step, float health, float energy)
 {
     playerStatsWidget->updatePlayerInfo(stats,level,raceName,step,health,energy);
 }

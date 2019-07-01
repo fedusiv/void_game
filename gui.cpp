@@ -7,7 +7,7 @@ Gui::Gui(QWidget *parent) : QWidget(parent)
     connectInit();
 }
 
-void Gui::updatePlayerInfo(int **stats, int level, QString raceName, int step, float health, float energy)
+void Gui::updatePlayerInfo(MainPlayerStats *stats, int level, QString raceName, int step, float health, float energy)
 {
     mainWindow->updatePlayerInfo(stats,level,raceName,step,health,energy);
 }

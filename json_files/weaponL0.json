@@ -8,7 +8,7 @@
     "level": 0,
     "hands": 1,
     "size" : 1.1,
-    "req"  : "100",
+    "req"  : [1,0,0],
     "dmg"  : [13,17],
             "skill":{
                         "type" : 1,
@@ -24,7 +24,7 @@
     "level": 0,
     "hands": 1,
     "size" : 1.3,
-    "req"  : "010",
+    "req"  : [1,0,0],
     "dmg"  : [12,15],
     "skill":{
                 "type" : 1,
@@ -40,7 +40,7 @@
     "level": 0,
     "hands": 2,
     "size" : 2.2,
-    "req"  : "110",
+    "req"  : [1,0,0],
     "dmg"  : [20,22],
             "skill":{
                         "type" : 1,

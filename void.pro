@@ -48,6 +48,7 @@ SOURCES += \
         testwidget.cpp
 
 HEADERS += \
+    common_types.h \
     equip/cloth.h \
     equip/equip.h \
     equip/equipfactory.h \

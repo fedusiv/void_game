@@ -2,6 +2,7 @@
 #define PLAYERSTATS_H
 
 #include <QString>
+#include "common_types.h"
 
 class PlayerStats
 {
@@ -9,7 +10,7 @@ public:
     // Main constructor
     PlayerStats();
     // send array of pointers to main 4 params
-    int **  getStats();
+    MainPlayerStats *  getStats();
     // send current level of player
     int getLevel();
 
@@ -18,10 +19,8 @@ public:
 
 
 private:
-    // Main 3 parameters, that influence to other stuff
-    int _Strength;
-    int _Agility;
-    int _Intelligence;
+
+    MainPlayerStats *  mainStats;
 
     int _Level;
 
@@ -30,9 +29,6 @@ private:
 
     float _Energy_max;// maxium energy points
     float _Energy;    //currenrt Player's Energy
-
-    // array of pointers to main 3 params, to easily send to another objects
-    int * _statsArray[3];
 };
 
 #endif // PLAYERSTATS_H

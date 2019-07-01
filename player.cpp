@@ -17,7 +17,7 @@ Player::Player() : _Step(0)
 
 }
 
-int ** Player::getPlayerStats()
+MainPlayerStats *Player::getPlayerStats()
 {
     return Stats->getStats();
 }
